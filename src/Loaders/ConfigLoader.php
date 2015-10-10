@@ -202,7 +202,7 @@ class ConfigLoader implements ConfigLoaderInterface {
         }
 
         if(!($resolvedParser instanceof Parser)){
-            throw new InvalidParserException(sprintf('%s must be instance of %s', var_export($parser, true), Parser::class));
+            throw new InvalidParserException(sprintf('%s must be instance of %s', get_class($parser), Parser::class));
         }
 
         $fileExtension = strtolower($resolvedParser::getFileType());
