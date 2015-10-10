@@ -207,7 +207,7 @@ class ConfigLoader implements ConfigLoaderInterface {
 
         $fileExtension = strtolower($resolvedParser::getFileType());
 
-        $this->parsers[$fileExtension] = $parser;
+        $this->parsers[$fileExtension] = $resolvedParser;
     }
 
     /**
