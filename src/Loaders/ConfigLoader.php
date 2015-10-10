@@ -103,7 +103,7 @@ class ConfigLoader implements ConfigLoaderInterface {
      * @return string|null
      */
     public function getDirectory() {
-        return $this->getDirectory();
+        return $this->directory;
     }
 
     /**
