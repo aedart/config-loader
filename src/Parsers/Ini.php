@@ -41,7 +41,7 @@ class Ini extends AbstractParser{
         try {
             return parse_ini_string($content, true);
         } catch(Exception $e){
-            throw new ParseException(sprintf('Cannot parse "%s", content contains errors', $this->getFilePath()));
+            throw new ParseException(sprintf('Cannot parse "%s", content contains errors; %s', $this->getFilePath(), PHP_EOL . $e->getMessage()), $e->getCode(), $e);
         }
     }
 }
