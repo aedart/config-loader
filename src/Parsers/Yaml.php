@@ -11,9 +11,6 @@ use Symfony\Component\Yaml\Yaml as SymfonyYamlParser;
  *
  * @see https://en.wikipedia.org/wiki/YAML
  *
- * <b>NB</b>: Does not support the *.yaml file extension, only
- * the *.yml
- *
  * @author Alin Eugen Deac <aedart@gmail.com>
  * @package Aedart\Config\Loader\Parsers
  */

@@ -6,6 +6,7 @@ use Aedart\Config\Loader\Exceptions\NoParserFoundException;
 use Aedart\Config\Loader\Parsers\Ini;
 use Aedart\Config\Loader\Parsers\Json;
 use Aedart\Config\Loader\Parsers\PHPArray;
+use Aedart\Config\Loader\Parsers\Yaml;
 
 /**
  * <h1>Default Parser Factory</h1>
@@ -35,16 +36,21 @@ class DefaultParserFactory implements ParserFactory{
 
         switch($ext){
 
-            case 'php':
+            case PHPArray::getFileType():
                 return new PHPArray();
                 break;
 
-            case 'json':
+            case Json::getFileType():
                 return new Json();
                 break;
 
-            case 'ini':
+            case Ini::getFileType():
                 return new Ini();
+                break;
+
+            case Yaml::getFileType():
+            case 'yaml':                // Backwards compatibility
+                return new Yaml();
                 break;
 
             default:

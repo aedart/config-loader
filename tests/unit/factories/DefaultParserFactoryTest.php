@@ -60,4 +60,20 @@ class DefaultParserFactoryTest extends ParserFactoryTestCase{
     public function canMakeParserForIni() {
         $this->assertCanMakeParserFor('ini');
     }
+
+    /**
+     * @test
+     * @covers ::make
+     */
+    public function canMakeParserForYaml() {
+        $this->assertCanMakeParserFor('yml');
+    }
+
+    /**
+     * @test
+     * @covers ::make
+     */
+    public function canMakeParserForYamlOldFileExtension() {
+        $this->assertCanMakeParserFor('yaml');
+    }
 }
