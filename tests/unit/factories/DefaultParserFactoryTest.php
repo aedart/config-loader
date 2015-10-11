@@ -52,4 +52,12 @@ class DefaultParserFactoryTest extends ParserFactoryTestCase{
     public function canMakeParserForJson() {
         $this->assertCanMakeParserFor('json');
     }
+
+    /**
+     * @test
+     * @covers ::make
+     */
+    public function canMakeParserForIni() {
+        $this->assertCanMakeParserFor('ini');
+    }
 }

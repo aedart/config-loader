@@ -3,6 +3,7 @@
 use Aedart\Config\Loader\Contracts\Factories\ParserFactory;
 use Aedart\Config\Loader\Contracts\Parsers\Parser;
 use Aedart\Config\Loader\Exceptions\NoParserFoundException;
+use Aedart\Config\Loader\Parsers\Ini;
 use Aedart\Config\Loader\Parsers\Json;
 use Aedart\Config\Loader\Parsers\PHPArray;
 
@@ -40,6 +41,10 @@ class DefaultParserFactory implements ParserFactory{
 
             case 'json':
                 return new Json();
+                break;
+
+            case 'ini':
+                return new Ini();
                 break;
 
             default:
