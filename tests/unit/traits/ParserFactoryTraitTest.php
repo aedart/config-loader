@@ -50,7 +50,7 @@ class ParserFactoryTraitTest extends UnitWithLaravelTestCase{
      * @covers Aedart\Config\Loader\Facades\ParserFactory::getFacadeAccessor
      * @covers Aedart\Config\Loader\Providers\ConfigurationLoaderServiceProvider::register
      */
-    public function canObtainDefaultConfigLoader() {
+    public function canObtainDefaultParserFactory() {
         $trait = $this->getTraitMock();
 
         $factory = $trait->getParserFactory();
