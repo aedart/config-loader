@@ -87,6 +87,8 @@ abstract class ParserTestCase extends UnitTestCase{
 
         try {
             $parser->loadAndParse();
+
+            $this->fail('Expected a Parser Exception to be thrown!');
         } catch (ParseException $e){
             $this->assertTrue(true);
         } catch (Exception $e){

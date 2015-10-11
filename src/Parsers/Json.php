@@ -36,7 +36,7 @@ class Json extends AbstractParser{
     public function parse($content) {
         $decoded = json_decode($content, true);
 
-        if(is_null($decoded) || json_last_error() != JSON_ERROR_NONE){
+        if(json_last_error() != JSON_ERROR_NONE){
             throw new ParseException(
                 sprintf(
                     'Could not parse "%s", file contains errors; %s',
