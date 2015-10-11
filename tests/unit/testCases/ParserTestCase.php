@@ -1,4 +1,5 @@
 <?php
+use Aedart\Config\Loader\Exceptions\ParseException;
 use Aedart\Testing\Laravel\TestCases\unit\UnitTestCase;
 use Codeception\Configuration;
 use Illuminate\Filesystem\Filesystem;
@@ -64,6 +65,46 @@ abstract class ParserTestCase extends UnitTestCase{
     /****************************************************
      * Assertions
      ***************************************************/
+
+    /**
+     * Assert that the parser in question has a file type
+     */
+    public function assertHasFileType() {
+        $parser = $this->makeParser();
+
+        $type = $parser->getFileType();
+
+        $this->assertInternalType('string', $type, 'File type must be a string');
+        $this->assertNotEmpty($type, 'File type must not be empty!');
+    }
+
+    /**
+     * Assert that the parser in question fails, when invalid
+     * content is attempted to be parsed
+     */
+    public function assertFailsWhenOnInvalidContent() {
+        $parser = $this->makeParser($this->getPathToInvalidFile());
+
+        try {
+            $parser->loadAndParse();
+        } catch (ParseException $e){
+            $this->assertTrue(true);
+        } catch (Exception $e){
+            $this->fail($e);
+        }
+    }
+
+    /**
+     * Assert that the parser in question is able to parse content
+     */
+    public function assertCanLoadAndParse() {
+        $parser = $this->makeParser($this->getPathToValidFile());
+
+        $output = $parser->loadAndParse();
+
+        $this->assertInternalType('array', $output, 'Parser output must be an array');
+        $this->assertNotEmpty($output, 'Configuration file might not contain any parse-able data');
+    }
 
     /****************************************************
      * Abstract methods
