@@ -1,5 +1,6 @@
 <?php namespace Aedart\Config\Loader\Parsers;
 use Aedart\Config\Loader\Exceptions\ParseException;
+use Exception;
 
 /**
  * <h1>Ini</h1>
@@ -37,12 +38,10 @@ class Ini extends AbstractParser{
      * @throws ParseException If given content could not be parsed
      */
     public function parse($content) {
-        $parsedIni = parse_ini_string($content, true);
-
-        if($parsedIni === false){
+        try {
+            return parse_ini_string($content, true);
+        } catch(Exception $e){
             throw new ParseException(sprintf('Cannot parse "%s", content contains errors', $this->getFilePath()));
         }
-
-        return $parsedIni;
     }
 }
