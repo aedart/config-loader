@@ -1,10 +1,8 @@
 <?php namespace Aedart\Config\Loader\Contracts\Loaders;
 
-use Aedart\Config\Loader\Contracts\Parsers\Parser;
+use Aedart\Config\Loader\Contracts\ParserFactoryAware;
 use Aedart\Config\Loader\Exceptions\DirectoryNotSpecifiedException;
-use Aedart\Config\Loader\Exceptions\InvalidParserException;
 use Aedart\Config\Loader\Exceptions\InvalidPathException;
-use Aedart\Config\Loader\Exceptions\NoParserFoundException;
 use Aedart\Config\Loader\Exceptions\ParseException;
 use Aedart\Laravel\Helpers\Contracts\Config\ConfigAware;
 use Aedart\Laravel\Helpers\Contracts\Filesystem\FileAware;
@@ -21,7 +19,7 @@ use Aedart\Laravel\Helpers\Contracts\Filesystem\FileAware;
  * @author Alin Eugen Deac <aedart@gmail.com>
  * @package Aedart\Config\Loader\Loaders
  */
-interface ConfigLoader extends ConfigAware, FileAware {
+interface ConfigLoader extends ConfigAware, FileAware, ParserFactoryAware {
 
     /**
      * Set the path to where the configuration
@@ -75,58 +73,58 @@ interface ConfigLoader extends ConfigAware, FileAware {
      */
     public function parse($filePath);
 
-    /**
-     * Add a list of configuration parsers to this loader
-     *
-     * @param string[]|Parser[] $parsers List of class paths or list of Parser instances
-     */
-    public function addParsers(array $parsers);
-
-    /**
-     * Add a configuration parser to this loader's list of
-     * available parsers
-     *
-     * @param string|Parser $parser Class path to parser or Parser instance
-     *
-     * @throws InvalidParserException If given parser is invalid
-     */
-    public function addParser($parser);
-
-    /**
-     * Returns a list of file extensions and their
-     * associated configuration parsers
-     *
-     * @return array
-     */
-    public function getParsers();
-
-    /**
-     * Remove the configuration parser for the given file extension
-     *
-     * @param string $fileExtension
-     *
-     * @throws NoParserFoundException If matching parser found for the given file extension
-     */
-    public function removeParserFor($fileExtension);
-
-    /**
-     * Check if a configuration parser exists for the
-     * given file extension
-     *
-     * @param string $fileExtension
-     *
-     * @return bool
-     */
-    public function hasParserFor($fileExtension);
-
-    /**
-     * Get a parser for the given file extension
-     *
-     * @param string $fileExtension
-     *
-     * @return Parser
-     *
-     * @throws NoParserFoundException If matching parser found for the given file extension
-     */
-    public function getParserFor($fileExtension);
+//    /**
+//     * Add a list of configuration parsers to this loader
+//     *
+//     * @param string[]|Parser[] $parsers List of class paths or list of Parser instances
+//     */
+//    public function addParsers(array $parsers);
+//
+//    /**
+//     * Add a configuration parser to this loader's list of
+//     * available parsers
+//     *
+//     * @param string|Parser $parser Class path to parser or Parser instance
+//     *
+//     * @throws InvalidParserException If given parser is invalid
+//     */
+//    public function addParser($parser);
+//
+//    /**
+//     * Returns a list of file extensions and their
+//     * associated configuration parsers
+//     *
+//     * @return array
+//     */
+//    public function getParsers();
+//
+//    /**
+//     * Remove the configuration parser for the given file extension
+//     *
+//     * @param string $fileExtension
+//     *
+//     * @throws NoParserFoundException If matching parser found for the given file extension
+//     */
+//    public function removeParserFor($fileExtension);
+//
+//    /**
+//     * Check if a configuration parser exists for the
+//     * given file extension
+//     *
+//     * @param string $fileExtension
+//     *
+//     * @return bool
+//     */
+//    public function hasParserFor($fileExtension);
+//
+//    /**
+//     * Get a parser for the given file extension
+//     *
+//     * @param string $fileExtension
+//     *
+//     * @return Parser
+//     *
+//     * @throws NoParserFoundException If matching parser found for the given file extension
+//     */
+//    public function getParserFor($fileExtension);
 }

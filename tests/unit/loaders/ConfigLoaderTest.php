@@ -1,7 +1,9 @@
 <?php
 
+use Aedart\Config\Loader\Contracts\Factories\ParserFactory;
 use Aedart\Config\Loader\Contracts\Parsers\Parser;
 use Aedart\Config\Loader\Loaders\ConfigLoader;
+use Aedart\Config\Loader\Providers\ConfigurationLoaderServiceProvider;
 use Aedart\Testing\Laravel\TestCases\unit\UnitWithLaravelTestCase;
 use Codeception\Configuration;
 use \Mockery as m;
@@ -16,6 +18,13 @@ use \Mockery as m;
  */
 class ConfigLoaderTest extends UnitWithLaravelTestCase{
 
+    protected function getPackageProviders($app)
+    {
+        return [
+            ConfigurationLoaderServiceProvider::class
+        ];
+    }
+
     /*******************************************************
      * Helpers
      ******************************************************/
@@ -24,12 +33,11 @@ class ConfigLoaderTest extends UnitWithLaravelTestCase{
      * Make a new configuration loader instance
      *
      * @param string $directory [optional]
-     * @param array $parsers [optional]
      *
      * @return ConfigLoader
      */
-    public function makeConfigLoader($directory = null, array $parsers = []) {
-        return new ConfigLoader($directory, $parsers);
+    public function makeConfigLoader($directory = null) {
+        return new ConfigLoader($directory);
     }
 
     /**
@@ -59,6 +67,15 @@ class ConfigLoaderTest extends UnitWithLaravelTestCase{
      */
     public function getInvalidParserMock(){
         return m::mock();
+    }
+
+    /**
+     * Get a Parser Factory mock
+     *
+     * @return m\MockInterface|ParserFactory
+     */
+    public function getParserFactoryMock() {
+        return m::mock(ParserFactory::class);
     }
 
     /*******************************************************
@@ -93,201 +110,15 @@ class ConfigLoaderTest extends UnitWithLaravelTestCase{
 
         $this->makeConfigLoader($directory);
     }
-
-    /**
-     * @test
-     * @covers ::__construct
-     * @covers ::addParsers
-     * @covers ::addParser
-     * @covers ::hasParserFor
-     * @covers ::getParsers
-     */
-    public function canAddParserViaClassPath() {
-        $directory = $this->getDirectory();
-
-        $fileExt = $this->faker->fileExtension;
-
-        $parser = $this->getParserMock();
-        $parser->shouldReceive('getFileType')
-            ->andReturn($fileExt);
-
-        $parsers = [
-            get_class($parser)
-        ];
-
-        $loader = $this->makeConfigLoader($directory, $parsers);
-
-        $this->assertTrue($loader->hasParserFor($fileExt));
-    }
-
-    /**
-     * @test
-     * @covers ::__construct
-     * @covers ::addParsers
-     * @covers ::addParser
-     * @covers ::getParserFor
-     * @covers ::hasParserFor
-     * @covers ::getParsers
-     */
-    public function canAddParserViaInstance() {
-        $directory = $this->getDirectory();
-
-        $fileExt = $this->faker->fileExtension;
-
-        $parser = $this->getParserMock();
-        $parser->shouldReceive('getFileType')
-            ->andReturn($fileExt);
-
-        $parsers = [
-            $parser
-        ];
-
-        $loader = $this->makeConfigLoader($directory, $parsers);
-
-        $this->assertSame($parser, $loader->getParserFor($fileExt));
-    }
-
-    /**
-     * @test
-     * @covers ::__construct
-     * @covers ::addParsers
-     * @covers ::addParser
-     *
-     * @expectedException \Aedart\Config\Loader\Exceptions\InvalidParserException
-     */
-    public function failsWhenInvalidParserProvided() {
-        $directory = $this->getDirectory();
-
-        $fileExt = $this->faker->fileExtension;
-
-        $parser = $this->getInvalidParserMock();
-
-        $parsers = [
-            $parser
-        ];
-
-        $this->makeConfigLoader($directory, $parsers);
-    }
-
-    /**
-     * @test
-     * @covers ::__construct
-     * @covers ::addParsers
-     * @covers ::addParser
-     * @covers ::getParserFor
-     * @covers ::hasParserFor
-     * @covers ::getParsers
-     * @covers ::removeParserFor
-     */
-    public function canRemoveParser() {
-        $directory = $this->getDirectory();
-
-        $fileExt = $this->faker->fileExtension;
-
-        $parser = $this->getParserMock();
-        $parser->shouldReceive('getFileType')
-            ->andReturn($fileExt);
-
-        $parsers = [
-            $parser
-        ];
-
-        $loader = $this->makeConfigLoader($directory, $parsers);
-
-        $loader->removeParserFor($fileExt);
-
-        $this->assertFalse($loader->hasParserFor($fileExt));
-    }
-
-    /**
-     * @test
-     * @covers ::__construct
-     * @covers ::addParsers
-     * @covers ::addParser
-     * @covers ::getParserFor
-     * @covers ::hasParserFor
-     * @covers ::getParsers
-     * @covers ::removeParserFor
-     *
-     * @expectedException \Aedart\Config\Loader\Exceptions\NoParserFoundException
-     */
-    public function failsWhenAttemptingToRemoveNoneExistingParser() {
-        $directory = $this->getDirectory();
-
-        $fileExt = $this->faker->fileExtension;
-
-        $parser = $this->getParserMock();
-        $parser->shouldReceive('getFileType')
-            ->andReturn($fileExt);
-
-        $parsers = [
-            $parser
-        ];
-
-        $loader = $this->makeConfigLoader($directory, $parsers);
-
-        $loader->removeParserFor($this->faker->fileExtension);
-    }
-
-    /**
-     * @test
-     * @covers ::__construct
-     * @covers ::getParsers
-     *
-     * @expectedException \Aedart\Config\Loader\Exceptions\NoParserFoundException
-     */
-    public function failsWhenInvalidParserIsAttemptedObtained() {
-        $directory = $this->getDirectory();
-
-        $fileExt = $this->faker->fileExtension;
-
-        $parser = $this->getParserMock();
-        $parser->shouldReceive('getFileType')
-            ->andReturn($fileExt);
-
-        $parsers = [
-            $parser
-        ];
-
-        $loader = $this->makeConfigLoader($directory, $parsers);
-
-        $loader->getParserFor($this->faker->fileExtension);
-    }
-
-    /**
-     * @test
-     * @covers ::__construct
-     * @covers ::getParsers
-     *
-     * @covers ::setDefaultParsers
-     */
-    public function hasDefaultParsers() {
-        $directory = $this->getDirectory();
-
-        $fileExt = $this->faker->fileExtension;
-
-        $parser = $this->getParserMock();
-        $parser->shouldReceive('getFileType')
-            ->andReturn($fileExt);
-
-        $parsers = [
-            $parser
-        ];
-
-        $loader = $this->makeConfigLoader($directory, $parsers);
-
-        $this->assertTrue(count($loader->getParsers()) > 1, 'Configuration loader should have at least one default parser');
-    }
-
+    
     /**
      * @test
      * @covers ::load
      *
      * @expectedException \Aedart\Config\Loader\Exceptions\DirectoryNotSpecifiedException
      */
-    public function failsLoadingAndParsingWhenNoDirectorySpecified() {
+    public function failsLoadingWhenNoDirectorySpecified() {
         $loader = $this->makeConfigLoader();
-
         $loader->load();
     }
 
@@ -298,7 +129,7 @@ class ConfigLoaderTest extends UnitWithLaravelTestCase{
      *
      * @expectedException \Aedart\Config\Loader\Exceptions\ParseException
      */
-    public function failsWhenUnableToParse(){
+    public function failsWhenUnableToParse() {
         $directory = $this->getDirectory();
 
         $fileExt = 'php'; // This should override the default php array parser
@@ -318,11 +149,13 @@ class ConfigLoaderTest extends UnitWithLaravelTestCase{
             ->withAnyArgs()
             ->andThrow(Exception::class);
 
-        $parsers = [
-            $parser
-        ];
+        $factory = $this->getParserFactoryMock();
+        $factory->shouldReceive('make')
+            ->with($fileExt)
+            ->andReturn($parser);
 
-        $loader = $this->makeConfigLoader($directory, $parsers);
+        $loader = $this->makeConfigLoader($directory);
+        $loader->setParserFactory($factory);
 
         $loader->load();
     }
