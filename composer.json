@@ -24,7 +24,8 @@
   "require-dev": {
     "aedart/license": "1.*",
     "aedart/license-file-manager": "~1.3",
-    "aedart/testing-laravel": "~1.4"
+    "aedart/testing-laravel": "~1.4",
+    "symfony/yaml": "~2.7"
   },
   "autoload": {
     "psr-4": {
