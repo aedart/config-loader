@@ -110,7 +110,7 @@ class ConfigLoaderTest extends UnitWithLaravelTestCase{
 
         $this->makeConfigLoader($directory);
     }
-    
+
     /**
      * @test
      * @covers ::load
