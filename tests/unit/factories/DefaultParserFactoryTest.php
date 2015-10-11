@@ -44,4 +44,12 @@ class DefaultParserFactoryTest extends ParserFactoryTestCase{
     public function canMakeParserForPHPArray() {
         $this->assertCanMakeParserFor('php');
     }
+
+    /**
+     * @test
+     * @covers ::make
+     */
+    public function canMakeParserForJson() {
+        $this->assertCanMakeParserFor('json');
+    }
 }
