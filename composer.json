@@ -31,6 +31,11 @@
       "Aedart\\Config\\Loader\\": "src/"
     }
   },
+  "autoload-dev": {
+    "classmap": [
+      "tests/unit/testCases"
+    ]
+  },
   "minimum-stability": "stable",
   "scripts": {
     "post-update-cmd": "vendor/bin/license-manager license:copy vendor/aedart/license/aedart/BSD-3-Clause"

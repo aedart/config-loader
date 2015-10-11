@@ -1,8 +1,10 @@
 <?php namespace Aedart\Config\Loader\Providers;
 
+use Aedart\Config\Loader\Factories\DefaultParserFactory;
 use Aedart\Config\Loader\Loaders\ConfigLoader;
 use Illuminate\Support\ServiceProvider;
 use Aedart\Config\Loader\Contracts\Loaders\ConfigLoader as ConfigLoaderInterface;
+use Aedart\Config\Loader\Contracts\Factories\ParserFactory as ParserFactoryInterface;
 
 /**
  * <h1>Configuration Loader Service Provider</h1>
@@ -20,6 +22,10 @@ class ConfigurationLoaderServiceProvider extends ServiceProvider{
      * @return void
      */
     public function register() {
+        $this->app->singleton(ParserFactoryInterface::class, function($application){
+            return new DefaultParserFactory();
+        });
+
         $this->app->bind(ConfigLoaderInterface::class, function($application){
             return new ConfigLoader();
         });
