@@ -13,6 +13,9 @@ file-parsers, which can be applied. However, if you have a need for a different 
 * [When to use this](#when-to-use-this)
 * [How to install](#how-to-install)
 * [Quick start](#quick-start)
+    * [Supported file types](#supported-file-types)
+    * [Inside a Laravel project](#inside-a-laravel-project)
+    * [Outside a Laravel project](#outside-a-laravel-project)
 * [Contribution](#contribution)
 * [Acknowledgement](#acknowledgement)
 * [Versioning](#versioning)
@@ -20,9 +23,8 @@ file-parsers, which can be applied. However, if you have a need for a different 
 
 ## When to use this
 
-* When your component depends on one or several of Laravel's native components
-* When there is a strong need to interface such dependencies 
-* When you need to be able to set a different instance of a given native Laravel component, e.g. your implemented version of a Configuration Repository
+* When you need to load configuration from a file
+* (When you need to load configuration from multiple files)
 
 
 ## How to install
@@ -36,7 +38,28 @@ This package uses [composer](https://getcomposer.org/). If you do not know what 
 
 ## Quick start
 
-### Component-aware interface, and component-trait
+### Supported file types
+
+| File Extension  | Parser  |
+|---|---|
+| *.ini  | \Aedart\Config\Loader\Parsers\Ini  |
+| *.json  | \Aedart\Config\Loader\Parsers\Json  |
+| *.php (php array)  | \Aedart\Config\Loader\Parsers\PHPArray  |
+| *.yml (also *.yaml) | \Aedart\Config\Loader\Parsers\Yaml  |
+
+### Inside a Laravel project
+
+#### Service Provider
+
+The first thing you need to to, is to register the service provider;
+
+```php
+\Aedart\Config\Loader\Providers\ConfigurationLoaderServiceProvider::class
+```
+
+### Outside a Laravel project
+
+-------------------------------------------
 
 Lets imagine that you have some kind of component, that needs to be aware of a configuration repository. You can ensure such, by implementing the `ConfigAware` interface.
 Furthermore, a default implementation is available, via the `ConfigTrait` trait.
@@ -114,6 +137,8 @@ class MyComponent implements ConfigAware {
 ```
 
 As an alternative, you can also bind your dependencies and still use the facades. Read more about Laravel's [IoC Service Container](http://laravel.com/docs/5.1/container), in order to learn more about this.
+
+-------------------------------------------
 
 ## Contribution
 
