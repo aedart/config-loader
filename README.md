@@ -1,7 +1,7 @@
-[![Latest Stable Version](https://poser.pugx.org/aedart/config-load/v/stable)](https://packagist.org/packages/aedart/config-load)
-[![Total Downloads](https://poser.pugx.org/aedart/config-load/downloads)](https://packagist.org/packages/aedart/config-load)
-[![Latest Unstable Version](https://poser.pugx.org/aedart/config-load/v/unstable)](https://packagist.org/packages/aedart/config-load)
-[![License](https://poser.pugx.org/aedart/config-load/license)](https://packagist.org/packages/aedart/config-load)
+[![Latest Stable Version](https://poser.pugx.org/aedart/config-loader/v/stable)](https://packagist.org/packages/aedart/config-loader)
+[![Total Downloads](https://poser.pugx.org/aedart/config-loader/downloads)](https://packagist.org/packages/aedart/config-loader)
+[![Latest Unstable Version](https://poser.pugx.org/aedart/config-loader/v/unstable)](https://packagist.org/packages/aedart/config-loader)
+[![License](https://poser.pugx.org/aedart/config-loader/license)](https://packagist.org/packages/aedart/config-loader)
 
 # Config Loader
 
