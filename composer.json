@@ -6,7 +6,7 @@
     "Parser",
     "Loader"
   ],
-  "homepage": "https://bitbucket.org/aedart/config-loader",
+  "homepage": "https://github.com/aedart/config-loader",
   "license": "BSD-3-Clause",
   "type": "library",
   "authors": [
@@ -24,8 +24,8 @@
   },
   "require-dev": {
     "aedart/license": "1.*",
-    "aedart/license-file-manager": "~1.3",
-    "aedart/testing-laravel": "~1.4"
+    "aedart/license-file-manager": "~1.4",
+    "aedart/testing-laravel": "~1.5"
   },
   "autoload": {
     "psr-4": {
