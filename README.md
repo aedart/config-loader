@@ -16,6 +16,9 @@ file-parsers, which can be applied. However, if you have a need for a different 
     * [Supported file types](#supported-file-types)
     * [Inside a Laravel project](#inside-a-laravel-project)
     * [Outside a Laravel project](#outside-a-laravel-project)
+    * [Load and parse a single file](#load-and-parse-a-single-file)
+    * [How to access the configuration](#how-to-access-the-configuration)
+    * [Custom configuration file parser](#custom-configuration-file-parser)
 * [Contribution](#contribution)
 * [Acknowledgement](#acknowledgement)
 * [Versioning](#versioning)
@@ -57,88 +60,103 @@ The first thing you need to to, is to register the service provider;
 \Aedart\Config\Loader\Providers\ConfigurationLoaderServiceProvider::class
 ```
 
+#### Load configuration
+
+After you have specified the service provider, you can use the loader. In the following example, a directory path is provided and the files contained in that directory are loaded and parsed;
+
+```php
+use Aedart\Config\Loader\Loaders\ConfigLoader;
+
+// Path to some directory that contains the configuration file(s)
+$path = 'config/';
+
+// Create a new loader instance
+$loader = new ConfigLoader($path);
+
+// Load and parse the configuration files
+// NB: Is added directly to Laravel's configuration, can be accessed normally via the Config facade...
+$loader->load();
+
+// Obtain the configuration repository
+$config = $loader->getConfig();
+
+```
+
 ### Outside a Laravel project
 
--------------------------------------------
-
-Lets imagine that you have some kind of component, that needs to be aware of a configuration repository. You can ensure such, by implementing the `ConfigAware` interface.
-Furthermore, a default implementation is available, via the `ConfigTrait` trait.
+When working outside a Laravel project, you need to create a few more instances, which the loader is dependent upon;
 
 ```php
-<?php
-use Aedart\Laravel\Helpers\Contracts\Config\ConfigAware;
-use Aedart\Laravel\Helpers\Traits\Config\ConfigTrait;
-
-class MyComponent implements ConfigAware {
-    use ConfigTrait;
-}
-```
-
-Now, your component is able to set and get an instance, of Laravel's `\Illuminate\Contracts\Config\Repository`. This means that, if you have a custom implementation of such a repository, then
-you can specify it on the component;
-
-```php
-<?php
-
-// Somewhere in you application...
-$myComponent = new MyComponent();
-$myComponent->setConfig($myCustomConfigRepository);
-
-```
-
-### Default fallback to Laravel's Facades
-
-All traits have a default fallback method, which invokes Laravel's corresponding facades, ensuring that even if you do not specify an instance, a given component is returned;
-
-```php
-<?php
-
-// When no custom configuration repository has been specified... 
-$myComponent = new MyComponent();
-$configRepository = $myComponent->getConfig(); // Uses fallback, invokes the `\Illuminate\Support\Facades\Config`, which is then resolved from the IoC Service Container 
-
-```
-
-### Usage inside a Laravel application
-
-You do not need any special configuration or service provides. Just ensure that you have required this package as a dependency, and you are good to go.
-
-### Outside a Laravel application
-
-If you plan to use this package outside a Laravel application, then you might require additional dependencies.
-
-**Example**
-
-If you need to work with the filesystem components, then you must require Laravel's filesystem package;
-
-```console
-
-composer require illuminate/filesystem
-```
-
-#### IoC Service Container - no fallback
-
-Fallback is not available, for any of the implemented traits, if this package is used outside a Laravel Application. It is up to you, to provide a fallback, if such is needed.
-Should that be the case, then you can overwrite the `getDefaultXZY` methods, in your component.
-
-```php
-<?php
-use Aedart\Laravel\Helpers\Contracts\Config\ConfigAware;
-use Aedart\Laravel\Helpers\Traits\Config\ConfigTrait;
+use Aedart\Config\Loader\Loaders\ConfigLoader;
+use Aedart\Config\Loader\Factories\DefaultParserFactory;
 use Illuminate\Config\Repository;
+use Illuminate\Filesystem\Filesystem;
 
-class MyComponent implements ConfigAware {
-    use ConfigTrait;
-    
-    public function getDefaultConfig() {
-        return new Repository(); // Please note that this repository will NOT store values statically!
-    }
-}
+// Path to some directory that contains the configuration file(s)
+$path = 'config/';
+
+// Create a new loader instance
+$loader = new ConfigLoader($path);
+
+// Specify the required dependencies
+$loader->setConfig(new Repository());
+$loader->setFile(new Filesystem());
+$loader->setParserFactory(new DefaultParserFactory());
+
+// Load and parse the configuration files
+$loader->load();
+
+// Obtain the configuration repository
+$config = $loader->getConfig();
+
 ```
 
-As an alternative, you can also bind your dependencies and still use the facades. Read more about Laravel's [IoC Service Container](http://laravel.com/docs/5.1/container), in order to learn more about this.
+### Load and parse a single file
 
--------------------------------------------
+You can also load and parse a single file, instead of an entire directory;
+
+```php
+
+// Provided you have created an instance of the configuration loader,
+// simply specify the full path to the configuration file
+$config = $loader->parse('config/users.yml');
+
+```
+
+### How to access the configuration
+
+If you are not familiar with Laravel's configuration repository, please review its [documentation](http://laravel.com/docs/5.1/installation#accessing-configuration-values).
+
+*Example PHP Array configuration file*
+
+_(config/users.php)_
+
+```php
+return [
+    'message' => 'Hallo World'
+];
+
+```
+
+*Example of accessing the `message`*
+
+```php
+
+// ... (loading and parsing not shown) ...
+
+// Fetch the message key
+$message = $config->get('users.message');
+
+echo $message; // Outputs 'Hallo World'
+
+```
+
+### Custom configuration file parser
+
+If you need a custom parser, then you can create one by implementing the `\Aedart\Config\Loader\Contracts\Parsers\Parser` interface.
+
+However, you also need to add your parser to a `parser factory`. Please review the `\Aedart\Config\Loader\Contracts\Factories\ParserFactory` interface, as well as the default
+factory provided in this package; `\Aedart\Config\Loader\Factories\DefaultParserFactory`
 
 ## Contribution
 
