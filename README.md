@@ -34,7 +34,7 @@ file-parsers, which can be applied. However, if you have a need for a different 
 
 ```console
 
-composer require aedart/config-load
+composer require aedart/config-loader
 ```
 
 This package uses [composer](https://getcomposer.org/). If you do not know what that is or how it works, I recommend that you read a little about, before attempting to use this package.
