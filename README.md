@@ -195,7 +195,7 @@ As soon as I receive the pull-request (_and have time for it_), I will review yo
 
 ## Versioning
 
-This package uses [Semantic Versioning 2.0.0](http://semver.org/)
+This package follows [Semantic Versioning 2.0.0](http://semver.org/)
 
 ## License
 
