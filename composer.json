@@ -17,15 +17,15 @@
   ],
   "require": {
     "php": ">=5.6.4",
-    "aedart/laravel-helpers": "~2.0",
-    "illuminate/filesystem": "5.3.*",
-    "illuminate/config": "5.3.*",
-    "symfony/yaml": "3.1.*"
+    "aedart/laravel-helpers": "~3.0",
+    "illuminate/filesystem": "5.4.*",
+    "illuminate/config": "5.4.*",
+    "symfony/yaml": "3.2.*"
   },
   "require-dev": {
     "aedart/license": "1.*",
     "aedart/license-file-manager": "~1.7",
-    "aedart/testing-laravel": "1.8.*"
+    "aedart/testing-laravel": "~2.0@dev"
   },
   "autoload": {
     "psr-4": {
@@ -34,16 +34,17 @@
   },
   "autoload-dev": {
     "classmap": [
-      "tests/unit/testCases"
+      "tests/testCases"
     ]
   },
   "minimum-stability": "stable",
+  "prefer-stable": true,
   "scripts": {
     "post-update-cmd": "vendor/bin/license-manager license:copy vendor/aedart/license/aedart/BSD-3-Clause"
   },
   "extra": {
     "branch-alias": {
-      "dev-master": "2.2.x-dev"
+      "dev-master": "3.0.x-dev"
     }
   }
 }
