@@ -134,12 +134,17 @@ class ConfigLoader implements ConfigLoaderInterface {
             $parser->setFile($this->getFile());
 
             // Parse the given configuration file
-            $parsedContent = $parser->setFilePath($filePath)
-                ->loadAndParse();
+            $parsedContent = $parser->setFilePath($filePath)->loadAndParse();
 
-            // Set the configuration
+            // Overload the configuration - we do not wish to
+            // re-set an entire section of the configuration.
             $config = $this->getConfig();
-            $config->set(strtolower($fileName), $parsedContent);
+
+            $section = strtolower($fileName);
+            $existing = $config->get($section, []);
+            $new = array_merge($existing, $parsedContent);
+            
+            $config->set($section, $new);
 
             return $config;
         } catch (Exception $e){
