@@ -125,7 +125,7 @@ $config = $loader->parse('config/users.yml');
 
 ### How to access the configuration
 
-If you are not familiar with Laravel's configuration repository, please review its [documentation](http://laravel.com/docs/5.1/installation#accessing-configuration-values).
+If you are not familiar with Laravel's configuration repository, please review its [documentation](https://laravel.com/docs/5.4/configuration#accessing-configuration-values).
 
 *Example PHP Array configuration file*
 
@@ -190,7 +190,7 @@ As soon as I receive the pull-request (_and have time for it_), I will review yo
 
 ## Acknowledgement
 
-* [Taylor Otwell](https://github.com/taylorotwell), for creating [Laravel](http://laravel.com) and especially the [Service Container](http://laravel.com/docs/5.1/container), that I'm using daily
+* [Taylor Otwell](https://github.com/taylorotwell), for creating [Laravel](http://laravel.com) and especially the [Service Container](https://laravel.com/docs/5.4/container), that I'm using daily
 * [Jeffrey Way](https://github.com/JeffreyWay), for creating [Laracasts](https://laracasts.com/) - a great place to learn new things... E.g. how to use the configuration repository
 
 ## Versioning
