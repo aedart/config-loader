@@ -11,7 +11,8 @@ use Aedart\Config\Loader\Contracts\Loaders\ConfigLoader as ConfigLoaderInterface
  * @author Alin Eugen Deac <aedart@gmail.com>
  * @package Aedart\Config\Loader\Facades
  */
-class ConfigLoader extends Facade{
+class ConfigLoader extends Facade
+{
 
     /**
      * Get the registered name of the component.

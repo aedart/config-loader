@@ -14,19 +14,21 @@ use Aedart\Config\Loader\Contracts\Factories\ParserFactory as ParserFactoryInter
  * @author Alin Eugen Deac <aedart@gmail.com>
  * @package Aedart\Config\Loader\Providers
  */
-class ConfigurationLoaderServiceProvider extends ServiceProvider{
+class ConfigurationLoaderServiceProvider extends ServiceProvider
+{
 
     /**
      * Register the service provider.
      *
      * @return void
      */
-    public function register() {
-        $this->app->singleton(ParserFactoryInterface::class, function($application){
+    public function register()
+    {
+        $this->app->singleton(ParserFactoryInterface::class, function ($application) {
             return new DefaultParserFactory();
         });
 
-        $this->app->bind(ConfigLoaderInterface::class, function($application){
+        $this->app->bind(ConfigLoaderInterface::class, function ($application) {
             return new ConfigLoader();
         });
     }

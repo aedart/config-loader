@@ -18,7 +18,8 @@ use Exception;
  * @author Alin Eugen Deac <aedart@gmail.com>
  * @package Aedart\Config\Loader\Loaders
  */
-class ConfigLoader implements ConfigLoaderInterface {
+class ConfigLoader implements ConfigLoaderInterface
+{
 
     use ConfigTrait, FileTrait, ParserFactoryTrait;
 
@@ -42,8 +43,9 @@ class ConfigLoader implements ConfigLoaderInterface {
      *
      * @param string $directoryPath [optional]
      */
-    public function __construct($directoryPath = null) {
-        if(!is_null($directoryPath)){
+    public function __construct($directoryPath = null)
+    {
+        if (!is_null($directoryPath)) {
             $this->setDirectory($directoryPath);
         }
     }
@@ -58,8 +60,9 @@ class ConfigLoader implements ConfigLoaderInterface {
      *
      * @throws InvalidPathException If given path does not exist
      */
-    public function setDirectory($path) {
-        if(!is_dir($path)){
+    public function setDirectory($path)
+    {
+        if (!is_dir($path)) {
             throw new InvalidPathException(sprintf('%s does not appear to exist', $path));
         }
 
@@ -74,7 +77,8 @@ class ConfigLoader implements ConfigLoaderInterface {
      *
      * @return string|null
      */
-    public function getDirectory() {
+    public function getDirectory()
+    {
         return $this->directory;
     }
 
@@ -83,7 +87,8 @@ class ConfigLoader implements ConfigLoaderInterface {
      *
      * @return bool
      */
-    public function hasDirectory() {
+    public function hasDirectory()
+    {
         return !is_null($this->directory);
     }
 
@@ -98,14 +103,15 @@ class ConfigLoader implements ConfigLoaderInterface {
      * @throws ParseException If unable to parse a given configuration file
      * @throws DirectoryNotSpecifiedException If no directory was specified
      */
-    public function load() {
-        if(!$this->hasDirectory()){
+    public function load()
+    {
+        if (!$this->hasDirectory()) {
             throw new DirectoryNotSpecifiedException('Cannot load configuration files, because no directory was specified');
         }
 
         $files = $this->getFile()->files($this->getDirectory());
 
-        foreach($files as $filePath){
+        foreach ($files as $filePath) {
             $this->parse($filePath);
         }
     }
@@ -120,7 +126,8 @@ class ConfigLoader implements ConfigLoaderInterface {
      *
      * @throws ParseException If unable to parse given configuration file
      */
-    public function parse($filePath) {
+    public function parse($filePath)
+    {
         try {
             // Get the file info for the given file
             $fileName = pathinfo($filePath, PATHINFO_FILENAME);
@@ -143,11 +150,11 @@ class ConfigLoader implements ConfigLoaderInterface {
             $section = strtolower($fileName);
             $existing = $config->get($section, []);
             $new = array_merge($existing, $parsedContent);
-            
+
             $config->set($section, $new);
 
             return $config;
-        } catch (Exception $e){
+        } catch (Exception $e) {
             throw new ParseException(sprintf('Unable to parse %s; %s', $filePath, PHP_EOL . $e), $e->getCode(), $e);
         }
     }

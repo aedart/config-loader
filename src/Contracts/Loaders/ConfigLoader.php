@@ -19,7 +19,8 @@ use Aedart\Laravel\Helpers\Contracts\Filesystem\FileAware;
  * @author Alin Eugen Deac <aedart@gmail.com>
  * @package Aedart\Config\Loader\Loaders
  */
-interface ConfigLoader extends ConfigAware, FileAware, ParserFactoryAware {
+interface ConfigLoader extends ConfigAware, FileAware, ParserFactoryAware
+{
 
     /**
      * Set the path to where the configuration

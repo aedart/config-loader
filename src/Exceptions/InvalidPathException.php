@@ -10,6 +10,7 @@ use InvalidArgumentException;
  * @author Alin Eugen Deac <aedart@gmail.com>
  * @package Aedart\Config\Loader\Exceptions
  */
-class InvalidPathException extends InvalidArgumentException{
+class InvalidPathException extends InvalidArgumentException
+{
 
 }

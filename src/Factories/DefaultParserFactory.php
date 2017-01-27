@@ -18,7 +18,8 @@ use Aedart\Config\Loader\Parsers\Yaml;
  * @author Alin Eugen Deac <aedart@gmail.com>
  * @package Aedart\Config\Loader\Factories
  */
-class DefaultParserFactory implements ParserFactory{
+class DefaultParserFactory implements ParserFactory
+{
 
     /**
      * Creates and returns a configuration parser, for the
@@ -30,11 +31,12 @@ class DefaultParserFactory implements ParserFactory{
      *
      * @throws NoParserFoundException If no parser could be created for the given file extension
      */
-    public function make($fileExtension) {
+    public function make($fileExtension)
+    {
 
         $ext = strtolower($fileExtension);
 
-        switch($ext){
+        switch ($ext) {
 
             case PHPArray::getFileType():
                 return new PHPArray();
@@ -54,7 +56,8 @@ class DefaultParserFactory implements ParserFactory{
                 break;
 
             default:
-                throw new NoParserFoundException(sprintf('No parser is available for the "%s" file extension', $fileExtension));
+                throw new NoParserFoundException(sprintf('No parser is available for the "%s" file extension',
+                    $fileExtension));
                 break;
         }
     }

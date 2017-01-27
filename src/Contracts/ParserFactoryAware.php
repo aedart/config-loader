@@ -13,7 +13,8 @@ use Aedart\Config\Loader\Contracts\Factories\ParserFactory;
  * @author Alin Eugen Deac <aedart@gmail.com>
  * @package Aedart\Config\Loader\Traits
  */
-interface ParserFactoryAware {
+interface ParserFactoryAware
+{
 
     /**
      * Set the given parser factory

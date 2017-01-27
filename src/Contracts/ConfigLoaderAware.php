@@ -13,7 +13,8 @@ use Aedart\Config\Loader\Contracts\Loaders\ConfigLoader;
  * @author Alin Eugen Deac <aedart@gmail.com>
  * @package Aedart\Config\Loader\Traits
  */
-interface ConfigLoaderAware {
+interface ConfigLoaderAware
+{
 
     /**
      * Set the given config loader

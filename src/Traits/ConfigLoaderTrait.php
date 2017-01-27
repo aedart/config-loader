@@ -11,7 +11,8 @@ use Aedart\Config\Loader\Facades\ConfigLoader as ConfigLoaderFacade;
  * @author Alin Eugen Deac <aedart@gmail.com>
  * @package Aedart\Config\Loader\Traits
  */
-trait ConfigLoaderTrait {
+trait ConfigLoaderTrait
+{
 
     /**
      * Configuration Loader
@@ -27,7 +28,8 @@ trait ConfigLoaderTrait {
      *
      * @return void
      */
-    public function setConfigLoader(ConfigLoader $loader) {
+    public function setConfigLoader(ConfigLoader $loader)
+    {
         $this->configLoader = $loader;
     }
 
@@ -42,7 +44,8 @@ trait ConfigLoaderTrait {
      *
      * @return ConfigLoader|null config loader or null if none config loader has been set
      */
-    public function getConfigLoader() {
+    public function getConfigLoader()
+    {
         if (!$this->hasConfigLoader() && $this->hasDefaultConfigLoader()) {
             $this->setConfigLoader($this->getDefaultConfigLoader());
         }
@@ -54,7 +57,8 @@ trait ConfigLoaderTrait {
      *
      * @return ConfigLoader|null A default config loader value or Null if no default value is available
      */
-    public function getDefaultConfigLoader() {
+    public function getDefaultConfigLoader()
+    {
         return ConfigLoaderFacade::getFacadeRoot();
     }
 
@@ -63,7 +67,8 @@ trait ConfigLoaderTrait {
      *
      * @return bool True if config loader has been set, false if not
      */
-    public function hasConfigLoader() {
+    public function hasConfigLoader()
+    {
         return !is_null($this->configLoader);
     }
 
@@ -72,7 +77,8 @@ trait ConfigLoaderTrait {
      *
      * @return bool True of a default config loader is available, false if not
      */
-    public function hasDefaultConfigLoader() {
+    public function hasDefaultConfigLoader()
+    {
         return !is_null($this->getDefaultConfigLoader());
     }
 }

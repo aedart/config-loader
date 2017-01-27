@@ -10,6 +10,7 @@ use InvalidArgumentException;
  * @author Alin Eugen Deac <aedart@gmail.com>
  * @package Aedart\Config\Loader\Exceptions
  */
-class FileDoesNotExistException extends InvalidArgumentException{
+class FileDoesNotExistException extends InvalidArgumentException
+{
 
 }

@@ -11,7 +11,8 @@ use Aedart\Config\Loader\Contracts\Factories\ParserFactory as ParserFactoryInter
  * @author Alin Eugen Deac <aedart@gmail.com>
  * @package Aedart\Config\Loader\Facades
  */
-class ParserFactory extends Facade{
+class ParserFactory extends Facade
+{
 
     /**
      * Get the registered name of the component.

@@ -13,7 +13,8 @@ use Aedart\Laravel\Helpers\Contracts\Filesystem\FileAware;
  * @author Alin Eugen Deac <aedart@gmail.com>
  * @package Aedart\Config\Loader\Parsers
  */
-interface Parser extends FileAware{
+interface Parser extends FileAware
+{
 
     /**
      * Returns the file extension, which this parser

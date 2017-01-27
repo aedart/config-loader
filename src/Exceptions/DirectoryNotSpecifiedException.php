@@ -11,6 +11,7 @@ use RuntimeException;
  * @author Alin Eugen Deac <aedart@gmail.com>
  * @package Aedart\Config\Loader\Exceptions
  */
-class DirectoryNotSpecifiedException extends RuntimeException{
+class DirectoryNotSpecifiedException extends RuntimeException
+{
 
 }

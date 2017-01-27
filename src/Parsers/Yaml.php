@@ -14,7 +14,8 @@ use Symfony\Component\Yaml\Yaml as SymfonyYamlParser;
  * @author Alin Eugen Deac <aedart@gmail.com>
  * @package Aedart\Config\Loader\Parsers
  */
-class Yaml extends AbstractParser{
+class Yaml extends AbstractParser
+{
 
     /**
      * Returns the file extension, which this parser
@@ -22,7 +23,8 @@ class Yaml extends AbstractParser{
      *
      * @return string
      */
-    public static function getFileType() {
+    public static function getFileType()
+    {
         return 'yml';
     }
 
@@ -35,11 +37,13 @@ class Yaml extends AbstractParser{
      *
      * @throws ParseException If given content could not be parsed
      */
-    public function parse($content) {
+    public function parse($content)
+    {
         try {
             return SymfonyYamlParser::parse($content, true);
         } catch (Exception $e) {
-            throw new ParseException(sprintf('Cannot parse "%s", content contains errors; %s', $this->getFilePath(), PHP_EOL . $e->getMessage()), $e->getCode(), $e);
+            throw new ParseException(sprintf('Cannot parse "%s", content contains errors; %s', $this->getFilePath(),
+                PHP_EOL . $e->getMessage()), $e->getCode(), $e);
         }
     }
 }

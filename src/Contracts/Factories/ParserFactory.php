@@ -14,7 +14,8 @@ use Aedart\Config\Loader\Exceptions\NoParserFoundException;
  * @author Alin Eugen Deac <aedart@gmail.com>
  * @package Aedart\Config\Loader\Contracts\Factories
  */
-interface ParserFactory {
+interface ParserFactory
+{
 
     /**
      * Creates and returns a configuration parser, for the

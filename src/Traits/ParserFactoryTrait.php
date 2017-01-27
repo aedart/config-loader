@@ -11,7 +11,8 @@ use Aedart\Config\Loader\Facades\ParserFactory as ParserFactoryFacade;
  * @author Alin Eugen Deac <aedart@gmail.com>
  * @package Aedart\Config\Loader\Traits
  */
-trait ParserFactoryTrait {
+trait ParserFactoryTrait
+{
 
     /**
      * Instance of a Parser Factory
@@ -27,7 +28,8 @@ trait ParserFactoryTrait {
      *
      * @return void
      */
-    public function setParserFactory(ParserFactory $factory) {
+    public function setParserFactory(ParserFactory $factory)
+    {
         $this->parserFactory = $factory;
     }
 
@@ -42,7 +44,8 @@ trait ParserFactoryTrait {
      *
      * @return ParserFactory|null parser factory or null if none parser factory has been set
      */
-    public function getParserFactory() {
+    public function getParserFactory()
+    {
         if (!$this->hasParserFactory() && $this->hasDefaultParserFactory()) {
             $this->setParserFactory($this->getDefaultParserFactory());
         }
@@ -54,7 +57,8 @@ trait ParserFactoryTrait {
      *
      * @return ParserFactory|null A default parser factory value or Null if no default value is available
      */
-    public function getDefaultParserFactory() {
+    public function getDefaultParserFactory()
+    {
         return ParserFactoryFacade::getFacadeRoot();
     }
 
@@ -63,7 +67,8 @@ trait ParserFactoryTrait {
      *
      * @return bool True if parser factory has been set, false if not
      */
-    public function hasParserFactory() {
+    public function hasParserFactory()
+    {
         return !is_null($this->parserFactory);
     }
 
@@ -72,7 +77,8 @@ trait ParserFactoryTrait {
      *
      * @return bool True of a default parser factory is available, false if not
      */
-    public function hasDefaultParserFactory() {
+    public function hasDefaultParserFactory()
+    {
         return !is_null($this->getDefaultParserFactory());
     }
 }

@@ -12,22 +12,26 @@ use Aedart\Config\Loader\Exceptions\ParseException;
  * @author Alin Eugen Deac <aedart@gmail.com>
  * @package Aedart\Config\Loader\Parsers
  */
-class PHPArray extends AbstractParser {
+class PHPArray extends AbstractParser
+{
 
-    public static function getFileType() {
+    public static function getFileType()
+    {
         return 'php';
     }
 
-    public function loadAndParse() {
-        if(!$this->hasFilePath()){
+    public function loadAndParse()
+    {
+        if (!$this->hasFilePath()) {
             throw new ParseException('No file path has been specified');
         }
 
         return $this->parse(require $this->getFilePath());
     }
 
-    public function parse($content) {
-        if(!is_array($content)){
+    public function parse($content)
+    {
+        if (!is_array($content)) {
             throw new ParseException(sprintf('Cannot parse %s, content is not a PHP array', $this->getFilePath()));
         }
 

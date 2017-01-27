@@ -11,6 +11,7 @@ use InvalidArgumentException;
  * @author Alin Eugen Deac <aedart@gmail.com>
  * @package Aedart\Config\Loader\Exceptions
  */
-class InvalidParserException extends InvalidArgumentException{
+class InvalidParserException extends InvalidArgumentException
+{
 
 }

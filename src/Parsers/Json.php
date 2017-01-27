@@ -12,7 +12,8 @@ use Aedart\Config\Loader\Exceptions\ParseException;
  * @author Alin Eugen Deac <aedart@gmail.com>
  * @package Aedart\Config\Loader\Parsers
  */
-class Json extends AbstractParser{
+class Json extends AbstractParser
+{
 
     /**
      * Returns the file extension, which this parser
@@ -20,7 +21,8 @@ class Json extends AbstractParser{
      *
      * @return string
      */
-    public static function getFileType() {
+    public static function getFileType()
+    {
         return 'json';
     }
 
@@ -33,10 +35,11 @@ class Json extends AbstractParser{
      *
      * @throws ParseException If given content could not be parsed
      */
-    public function parse($content) {
+    public function parse($content)
+    {
         $decoded = json_decode($content, true);
 
-        if(json_last_error() != JSON_ERROR_NONE){
+        if (json_last_error() != JSON_ERROR_NONE) {
             throw new ParseException(
                 sprintf(
                     'Could not parse "%s", file contains errors; %s',
