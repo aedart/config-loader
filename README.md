@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/aedart/config-loader.svg?branch=master)](https://travis-ci.org/aedart/config-loader)
 [![Latest Stable Version](https://poser.pugx.org/aedart/config-loader/v/stable)](https://packagist.org/packages/aedart/config-loader)
 [![Total Downloads](https://poser.pugx.org/aedart/config-loader/downloads)](https://packagist.org/packages/aedart/config-loader)
 [![Latest Unstable Version](https://poser.pugx.org/aedart/config-loader/v/unstable)](https://packagist.org/packages/aedart/config-loader)
