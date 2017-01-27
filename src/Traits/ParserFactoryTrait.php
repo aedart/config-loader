@@ -59,7 +59,8 @@ trait ParserFactoryTrait
      */
     public function getDefaultParserFactory()
     {
-        return ParserFactoryFacade::getFacadeRoot();
+        static $factory;
+        return isset($factory) ? $factory : $factory = ParserFactoryFacade::getFacadeRoot();
     }
 
     /**
@@ -69,7 +70,7 @@ trait ParserFactoryTrait
      */
     public function hasParserFactory()
     {
-        return !is_null($this->parserFactory);
+        return isset($this->parserFactory);
     }
 
     /**
@@ -79,6 +80,7 @@ trait ParserFactoryTrait
      */
     public function hasDefaultParserFactory()
     {
-        return !is_null($this->getDefaultParserFactory());
+        $default = $this->getDefaultParserFactory();
+        return isset($default);
     }
 }
