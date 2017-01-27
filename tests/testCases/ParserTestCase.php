@@ -1,6 +1,7 @@
 <?php
+
 use Aedart\Config\Loader\Exceptions\ParseException;
-use Aedart\Testing\Laravel\TestCases\unit\UnitTestCase;
+use Aedart\Testing\TestCases\Unit\UnitTestCase;
 use Codeception\Configuration;
 use Illuminate\Filesystem\Filesystem;
 

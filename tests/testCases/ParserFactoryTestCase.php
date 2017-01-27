@@ -1,7 +1,7 @@
 <?php
 
 use Aedart\Config\Loader\Contracts\Parsers\Parser;
-use Aedart\Testing\Laravel\TestCases\unit\UnitTestCase;
+use Aedart\Testing\TestCases\Unit\UnitTestCase;
 
 /**
  * <h1>Parser Factory Test Case</h1>
