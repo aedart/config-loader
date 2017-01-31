@@ -59,8 +59,7 @@ trait ParserFactoryTrait
      */
     public function getDefaultParserFactory()
     {
-        static $factory;
-        return isset($factory) ? $factory : $factory = ParserFactoryFacade::getFacadeRoot();
+        return ParserFactoryFacade::getFacadeRoot();
     }
 
     /**

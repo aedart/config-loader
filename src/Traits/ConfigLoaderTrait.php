@@ -59,8 +59,7 @@ trait ConfigLoaderTrait
      */
     public function getDefaultConfigLoader()
     {
-        static $loader;
-        return isset($loader) ? $loader : $loader = ConfigLoaderFacade::getFacadeRoot();
+        return ConfigLoaderFacade::getFacadeRoot();
     }
 
     /**
