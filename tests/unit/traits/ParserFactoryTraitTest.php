@@ -9,11 +9,11 @@ use Aedart\Testing\Laravel\TestCases\unit\UnitWithLaravelTestCase;
  * Class ParserFactoryTraitTest
  *
  * @group traits
- * @coversDefaultClass Aedart\Config\Loader\Traits\ParserFactoryTrait
  *
  * @author Alin Eugen Deac <aedart@gmail.com>
  */
-class ParserFactoryTraitTest extends UnitWithLaravelTestCase{
+class ParserFactoryTraitTest extends UnitWithLaravelTestCase
+{
 
     protected function getPackageProviders($app)
     {
@@ -31,7 +31,8 @@ class ParserFactoryTraitTest extends UnitWithLaravelTestCase{
      *
      * @return PHPUnit_Framework_MockObject_MockObject|ParserFactoryTrait
      */
-    public function getTraitMock() {
+    public function getTraitMock()
+    {
         return $this->getMockForTrait(ParserFactoryTrait::class);
     }
 
@@ -41,16 +42,9 @@ class ParserFactoryTraitTest extends UnitWithLaravelTestCase{
 
     /**
      * @test
-     * @covers ::getParserFactory
-     * @covers ::hasParserFactory
-     * @covers ::hasDefaultParserFactory
-     * @covers ::setParserFactory
-     * @covers ::getDefaultParserFactory
-     *
-     * @covers Aedart\Config\Loader\Facades\ParserFactory::getFacadeAccessor
-     * @covers Aedart\Config\Loader\Providers\ConfigurationLoaderServiceProvider::register
      */
-    public function canObtainDefaultParserFactory() {
+    public function canObtainDefaultParserFactory()
+    {
         $trait = $this->getTraitMock();
 
         $factory = $trait->getParserFactory();
