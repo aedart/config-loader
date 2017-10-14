@@ -10,7 +10,8 @@ use Aedart\Testing\TestCases\Unit\UnitTestCase;
  *
  * @author Alin Eugen Deac <aedart@gmail.com>
  */
-abstract class ParserFactoryTestCase extends UnitTestCase{
+abstract class ParserFactoryTestCase extends UnitTestCase
+{
 
     /************************************************************
      * Helpers
@@ -21,7 +22,8 @@ abstract class ParserFactoryTestCase extends UnitTestCase{
      *
      * @return \Aedart\Config\Loader\Contracts\Factories\ParserFactory
      */
-    public function getParserFactory() {
+    public function getParserFactory()
+    {
         $factory = $this->getFactoryClassPath();
         return new $factory();
     }
@@ -36,12 +38,14 @@ abstract class ParserFactoryTestCase extends UnitTestCase{
      *
      * @param string $fileExtension
      */
-    public function assertCanMakeParserFor($fileExtension) {
+    public function assertCanMakeParserFor($fileExtension)
+    {
         $factor = $this->getParserFactory();
 
         $parser = $factor->make($fileExtension);
 
-        $this->assertInstanceOf(Parser::class, $parser, sprintf('Could not make parser for "%s" file extension', $fileExtension));
+        $this->assertInstanceOf(Parser::class, $parser,
+            sprintf('Could not make parser for "%s" file extension', $fileExtension));
     }
 
     /************************************************************
