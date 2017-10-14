@@ -1,4 +1,6 @@
-<?php namespace Aedart\Config\Loader\Providers;
+<?php
+
+namespace Aedart\Config\Loader\Providers;
 
 use Aedart\Config\Loader\Factories\DefaultParserFactory;
 use Aedart\Config\Loader\Loaders\ConfigLoader;
@@ -16,7 +18,6 @@ use Aedart\Config\Loader\Contracts\Factories\ParserFactory as ParserFactoryInter
  */
 class ConfigurationLoaderServiceProvider extends ServiceProvider
 {
-
     /**
      * Register the service provider.
      *
