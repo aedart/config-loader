@@ -12,7 +12,6 @@ use \Mockery as m;
  * Class ConfigLoaderTest
  *
  * @group loaders
- * @coversDefaultClass Aedart\Config\Loader\Loaders\ConfigLoader
  *
  * @author Alin Eugen Deac <aedart@gmail.com>
  */
@@ -84,10 +83,6 @@ class ConfigLoaderTest extends UnitWithLaravelTestCase{
 
     /**
      * @test
-     * @covers ::__construct
-     * @covers ::getDirectory
-     * @covers ::setDirectory
-     * @covers ::hasDirectory
      */
     public function canSpecifyAndObtainDirectoryPath() {
         $directory = $this->getDirectory();
@@ -100,8 +95,6 @@ class ConfigLoaderTest extends UnitWithLaravelTestCase{
 
     /**
      * @test
-     * @covers ::__construct
-     * @covers ::setDirectory
      *
      * @expectedException \Aedart\Config\Loader\Exceptions\InvalidPathException
      */
@@ -113,7 +106,6 @@ class ConfigLoaderTest extends UnitWithLaravelTestCase{
 
     /**
      * @test
-     * @covers ::load
      *
      * @expectedException \Aedart\Config\Loader\Exceptions\DirectoryNotSpecifiedException
      */
@@ -124,8 +116,6 @@ class ConfigLoaderTest extends UnitWithLaravelTestCase{
 
     /**
      * @test
-     * @covers ::load
-     * @covers ::parse
      *
      * @expectedException \Aedart\Config\Loader\Exceptions\ParseException
      */
@@ -165,8 +155,6 @@ class ConfigLoaderTest extends UnitWithLaravelTestCase{
      * because parsers should be tested separately
      *
      * @test
-     * @covers ::load
-     * @covers ::parse
      */
     public function canParsePHPArrays() {
         $directory = $this->getDirectory();
