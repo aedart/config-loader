@@ -1,8 +1,11 @@
-<?php namespace Aedart\Config\Loader\Parsers;
+<?php
+declare(strict_types=1);
+
+namespace Aedart\Config\Loader\Parsers;
 
 use Aedart\Config\Loader\Exceptions\ParseException;
-use Exception;
 use Symfony\Component\Yaml\Yaml as SymfonyYamlParser;
+use Throwable;
 
 /**
  * <h1>YAML</h1>
@@ -16,32 +19,22 @@ use Symfony\Component\Yaml\Yaml as SymfonyYamlParser;
  */
 class Yaml extends AbstractParser
 {
-
     /**
-     * Returns the file extension, which this parser
-     * is responsible for parsing
-     *
-     * @return string
+     * @inheritdoc
      */
-    public static function getFileType()
+    public static function getFileType() : string
     {
         return 'yml';
     }
 
     /**
-     * Parse the given content into an array
-     *
-     * @param string $content
-     *
-     * @return array
-     *
-     * @throws ParseException If given content could not be parsed
+     * @inheritdoc
      */
-    public function parse($content)
+    public function parse(string $content) : array
     {
         try {
-            return SymfonyYamlParser::parse($content, true);
-        } catch (Exception $e) {
+            return SymfonyYamlParser::parse($content, SymfonyYamlParser::PARSE_EXCEPTION_ON_INVALID_TYPE);
+        } catch (Throwable $e) {
             throw new ParseException(sprintf('Cannot parse "%s", content contains errors; %s', $this->getFilePath(),
                 PHP_EOL . $e->getMessage()), $e->getCode(), $e);
         }
