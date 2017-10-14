@@ -1,4 +1,7 @@
-<?php namespace Aedart\Config\Loader\Parsers;
+<?php
+declare(strict_types=1);
+
+namespace Aedart\Config\Loader\Parsers;
 
 use Aedart\Config\Loader\Contracts\Parsers\Parser;
 use Aedart\Config\Loader\Exceptions\FileDoesNotExistException;
@@ -15,7 +18,6 @@ use Aedart\Laravel\Helpers\Traits\Filesystem\FileTrait;
  */
 abstract class AbstractParser implements Parser
 {
-
     use FileTrait;
 
     /**
@@ -28,16 +30,19 @@ abstract class AbstractParser implements Parser
     /**
      * Create a new instance of this parser
      *
-     * @param string $filePath [optional]
+     * @param string|null $filePath [optional]
      */
-    public function __construct($filePath = null)
+    public function __construct(?string $filePath)
     {
-        if (!is_null($filePath)) {
+        if (isset($filePath)) {
             $this->setFilePath($filePath);
         }
     }
 
-    public function setFilePath($filePath)
+    /**
+     * @inheritdoc
+     */
+    public function setFilePath(string $filePath) : Parser
     {
         if (!is_file($filePath)) {
             throw new FileDoesNotExistException(sprintf('%s does not exist', $filePath));
@@ -48,17 +53,26 @@ abstract class AbstractParser implements Parser
         return $this;
     }
 
-    public function getFilePath()
+    /**
+     * @inheritdoc
+     */
+    public function getFilePath() : ?string
     {
         return $this->filePath;
     }
 
-    public function hasFilePath()
+    /**
+     * @inheritdoc
+     */
+    public function hasFilePath() : bool
     {
         return !is_null($this->filePath);
     }
 
-    public function loadAndParse()
+    /**
+     * @inheritdoc
+     */
+    public function loadAndParse() : array
     {
         if (!$this->hasFilePath()) {
             throw new ParseException('No file path has been specified');
