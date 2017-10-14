@@ -1,6 +1,10 @@
-<?php namespace Aedart\Config\Loader\Parsers;
+<?php
+declare(strict_types=1);
+
+namespace Aedart\Config\Loader\Parsers;
 
 use Aedart\Config\Loader\Exceptions\ParseException;
+use Throwable;
 
 /**
  * <h1>PHP Array</h1>
@@ -15,26 +19,41 @@ use Aedart\Config\Loader\Exceptions\ParseException;
 class PHPArray extends AbstractParser
 {
 
-    public static function getFileType()
+    /**
+     * @inheritdoc
+     */
+    public static function getFileType() : string
     {
         return 'php';
     }
 
-    public function loadAndParse()
+    /**
+     * @inheritdoc
+     */
+    public function loadAndParse() : array
     {
         if (!$this->hasFilePath()) {
             throw new ParseException('No file path has been specified');
         }
 
-        return $this->parse(require $this->getFilePath());
+        return $this->parse($this->getFilePath());
     }
 
-    public function parse($content)
+    /**
+     * @inheritdoc
+     */
+    public function parse(string $content) : array
     {
-        if (!is_array($content)) {
-            throw new ParseException(sprintf('Cannot parse %s, content is not a PHP array', $this->getFilePath()));
-        }
+        try{
+            $fileContent = require $content;
 
-        return $content;
+            if (!is_array($fileContent)) {
+                throw new ParseException(sprintf('Cannot parse %s, content is not a PHP array', $content));
+            }
+
+            return $fileContent;
+        } catch (Throwable $e) {
+            throw new ParseException(sprintf('Unable to load and parse %s', $content));
+        }
     }
 }
