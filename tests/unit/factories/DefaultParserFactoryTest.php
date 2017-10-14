@@ -6,7 +6,6 @@ use Aedart\Config\Loader\Factories\DefaultParserFactory;
  * Class DefaultParserFactoryTest
  *
  * @group factories
- * @coversDefaultClass Aedart\Config\Loader\Factories\DefaultParserFactory
  *
  * @author Alin Eugen Deac <aedart@gmail.com>
  */
@@ -27,7 +26,6 @@ class DefaultParserFactoryTest extends ParserFactoryTestCase{
 
     /**
      * @test
-     * @covers ::make
      *
      * @expectedException \Aedart\Config\Loader\Exceptions\NoParserFoundException
      */
@@ -39,7 +37,6 @@ class DefaultParserFactoryTest extends ParserFactoryTestCase{
 
     /**
      * @test
-     * @covers ::make
      */
     public function canMakeParserForPHPArray() {
         $this->assertCanMakeParserFor('php');
@@ -47,7 +44,6 @@ class DefaultParserFactoryTest extends ParserFactoryTestCase{
 
     /**
      * @test
-     * @covers ::make
      */
     public function canMakeParserForJson() {
         $this->assertCanMakeParserFor('json');
@@ -55,7 +51,6 @@ class DefaultParserFactoryTest extends ParserFactoryTestCase{
 
     /**
      * @test
-     * @covers ::make
      */
     public function canMakeParserForIni() {
         $this->assertCanMakeParserFor('ini');
@@ -63,7 +58,6 @@ class DefaultParserFactoryTest extends ParserFactoryTestCase{
 
     /**
      * @test
-     * @covers ::make
      */
     public function canMakeParserForYaml() {
         $this->assertCanMakeParserFor('yml');
@@ -71,7 +65,6 @@ class DefaultParserFactoryTest extends ParserFactoryTestCase{
 
     /**
      * @test
-     * @covers ::make
      */
     public function canMakeParserForYamlOldFileExtension() {
         $this->assertCanMakeParserFor('yaml');
