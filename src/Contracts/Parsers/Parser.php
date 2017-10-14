@@ -1,4 +1,6 @@
-<?php namespace Aedart\Config\Loader\Contracts\Parsers;
+<?php
+
+namespace Aedart\Config\Loader\Contracts\Parsers;
 
 use Aedart\Config\Loader\Exceptions\FileDoesNotExistException;
 use Aedart\Config\Loader\Exceptions\ParseException;
@@ -15,14 +17,13 @@ use Aedart\Laravel\Helpers\Contracts\Filesystem\FileAware;
  */
 interface Parser extends FileAware
 {
-
     /**
      * Returns the file extension, which this parser
      * is responsible for parsing
      *
      * @return string
      */
-    public static function getFileType();
+    public static function getFileType() : string;
 
     /**
      * Set the path of the configuration file that
@@ -30,11 +31,11 @@ interface Parser extends FileAware
      *
      * @param string $filePath
      *
-     * @return $this
+     * @return self
      *
      * @throws FileDoesNotExistException If the given file does not exist
      */
-    public function setFilePath($filePath);
+    public function setFilePath(string $filePath) : Parser;
 
     /**
      * Get the path of the configuration file that
@@ -42,7 +43,7 @@ interface Parser extends FileAware
      *
      * @return string|null
      */
-    public function getFilePath();
+    public function getFilePath() : ?string ;
 
     /**
      * Check if this parser has a configuration file path
@@ -50,7 +51,7 @@ interface Parser extends FileAware
      *
      * @return bool
      */
-    public function hasFilePath();
+    public function hasFilePath() : bool ;
 
     /**
      * Loads the specified configuration file's content
@@ -62,7 +63,7 @@ interface Parser extends FileAware
      *
      * @throws ParseException If given file's content could not be parsed
      */
-    public function loadAndParse();
+    public function loadAndParse() : array ;
 
     /**
      * Parse the given content into an array
@@ -73,5 +74,5 @@ interface Parser extends FileAware
      *
      * @throws ParseException If given content could not be parsed
      */
-    public function parse($content);
+    public function parse(string $content) : array ;
 }
