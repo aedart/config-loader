@@ -1,11 +1,15 @@
-<?php namespace Aedart\Config\Loader\Contracts\Loaders;
+<?php
+
+namespace Aedart\Config\Loader\Contracts\Loaders;
 
 use Aedart\Config\Loader\Contracts\ParserFactoryAware;
+use Aedart\Config\Loader\Contracts\Parsers\Parser;
 use Aedart\Config\Loader\Exceptions\DirectoryNotSpecifiedException;
 use Aedart\Config\Loader\Exceptions\InvalidPathException;
 use Aedart\Config\Loader\Exceptions\ParseException;
 use Aedart\Laravel\Helpers\Contracts\Config\ConfigAware;
 use Aedart\Laravel\Helpers\Contracts\Filesystem\FileAware;
+use Illuminate\Contracts\Config\Repository;
 
 /**
  * <h1>Config Loader</h1>
@@ -19,20 +23,21 @@ use Aedart\Laravel\Helpers\Contracts\Filesystem\FileAware;
  * @author Alin Eugen Deac <aedart@gmail.com>
  * @package Aedart\Config\Loader\Loaders
  */
-interface ConfigLoader extends ConfigAware, FileAware, ParserFactoryAware
+interface ConfigLoader extends ConfigAware,
+    FileAware,
+    ParserFactoryAware
 {
-
     /**
      * Set the path to where the configuration
      * files are located
      *
      * @param string $path
      *
-     * @return \Aedart\Config\Loader\Loaders\ConfigLoader
+     * @return self
      *
      * @throws InvalidPathException If given path does not exist
      */
-    public function setDirectory($path);
+    public function setDirectory(string $path) : ConfigLoader;
 
     /**
      * Returns the path to where the configuration
@@ -40,14 +45,14 @@ interface ConfigLoader extends ConfigAware, FileAware, ParserFactoryAware
      *
      * @return string|null
      */
-    public function getDirectory();
+    public function getDirectory() : ?string;
 
     /**
      * Check if a directory was set
      *
      * @return bool
      */
-    public function hasDirectory();
+    public function hasDirectory(): bool;
 
     /**
      * Loads and parses the configuration files found inside
@@ -60,7 +65,7 @@ interface ConfigLoader extends ConfigAware, FileAware, ParserFactoryAware
      * @throws ParseException If unable to parse a given configuration file
      * @throws DirectoryNotSpecifiedException If no directory was specified
      */
-    public function load();
+    public function load(): void;
 
     /**
      * Parse the given configuration file, and return instance
@@ -68,9 +73,9 @@ interface ConfigLoader extends ConfigAware, FileAware, ParserFactoryAware
      *
      * @param string $filePath Path to configuration file
      *
-     * @return \Illuminate\Contracts\Config\Repository
+     * @return Repository
      *
      * @throws ParseException If unable to parse given configuration file
      */
-    public function parse($filePath);
+    public function parse(string $filePath) : Repository;
 }
