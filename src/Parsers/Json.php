@@ -1,4 +1,7 @@
-<?php namespace Aedart\Config\Loader\Parsers;
+<?php
+declare(strict_types=1);
+
+namespace Aedart\Config\Loader\Parsers;
 
 use Aedart\Config\Loader\Exceptions\ParseException;
 
@@ -14,28 +17,18 @@ use Aedart\Config\Loader\Exceptions\ParseException;
  */
 class Json extends AbstractParser
 {
-
     /**
-     * Returns the file extension, which this parser
-     * is responsible for parsing
-     *
-     * @return string
+     * @inheritdoc
      */
-    public static function getFileType()
+    public static function getFileType() : string
     {
         return 'json';
     }
 
     /**
-     * Parse the given content into an array
-     *
-     * @param string $content
-     *
-     * @return array
-     *
-     * @throws ParseException If given content could not be parsed
+     * @inheritdoc
      */
-    public function parse($content)
+    public function parse(string $content) : array
     {
         $decoded = json_decode($content, true);
 
