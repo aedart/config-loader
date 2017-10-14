@@ -16,16 +16,16 @@
     }
   ],
   "require": {
-    "php": ">=5.6.4",
-    "aedart/laravel-helpers": "~3.0",
-    "illuminate/filesystem": "5.4.*",
-    "illuminate/config": "5.4.*",
-    "symfony/yaml": "3.2.*"
+    "php": ">=7.1.0",
+    "aedart/laravel-helpers": "~4.0",
+    "illuminate/filesystem": "5.5.*",
+    "illuminate/config": "5.5.*",
+    "symfony/yaml": "3.3.*"
   },
   "require-dev": {
     "aedart/license": "1.*",
-    "aedart/license-file-manager": "~1.7",
-    "aedart/testing-laravel": "~2.0@dev"
+    "aedart/license-file-manager": "~1.8",
+    "aedart/testing-laravel": "~3.0"
   },
   "autoload": {
     "psr-4": {
@@ -44,7 +44,7 @@
   },
   "extra": {
     "branch-alias": {
-      "dev-master": "3.1.x-dev"
+      "dev-master": "4.0.x-dev"
     }
   }
 }
