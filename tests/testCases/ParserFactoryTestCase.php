@@ -18,7 +18,7 @@ abstract class ParserFactoryTestCase extends UnitTestCase
      ************************************************************/
 
     /**
-     * Get the Parser Factory in quesion
+     * Get the Parser Factory in question
      *
      * @return \Aedart\Config\Loader\Contracts\Factories\ParserFactory
      */
