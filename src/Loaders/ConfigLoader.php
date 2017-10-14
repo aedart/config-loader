@@ -1,4 +1,7 @@
-<?php namespace Aedart\Config\Loader\Loaders;
+<?php
+declare(strict_types=1);
+
+namespace Aedart\Config\Loader\Loaders;
 
 use Aedart\Config\Loader\Contracts\Loaders\ConfigLoader as ConfigLoaderInterface;
 use Aedart\Config\Loader\Exceptions\DirectoryNotSpecifiedException;
@@ -7,7 +10,9 @@ use Aedart\Config\Loader\Exceptions\ParseException;
 use Aedart\Config\Loader\Traits\ParserFactoryTrait;
 use Aedart\Laravel\Helpers\Traits\Config\ConfigTrait;
 use Aedart\Laravel\Helpers\Traits\Filesystem\FileTrait;
-use Exception;
+use Illuminate\Contracts\Config\Repository;
+use Symfony\Component\Finder\SplFileInfo;
+use Throwable;
 
 /**
  * <h1>Config Loader</h1>
@@ -20,8 +25,9 @@ use Exception;
  */
 class ConfigLoader implements ConfigLoaderInterface
 {
-
-    use ConfigTrait, FileTrait, ParserFactoryTrait;
+    use ConfigTrait;
+    use FileTrait;
+    use ParserFactoryTrait;
 
     /**
      * Path to the directory that contains the
@@ -43,24 +49,17 @@ class ConfigLoader implements ConfigLoaderInterface
      *
      * @param string $directoryPath [optional]
      */
-    public function __construct($directoryPath = null)
+    public function __construct(?string $directoryPath)
     {
-        if (!is_null($directoryPath)) {
+        if(isset($directoryPath)){
             $this->setDirectory($directoryPath);
         }
     }
 
     /**
-     * Set the path to where the configuration
-     * files are located
-     *
-     * @param string $path
-     *
-     * @return $this
-     *
-     * @throws InvalidPathException If given path does not exist
+     * @inheritdoc
      */
-    public function setDirectory($path)
+    public function setDirectory(string $path) : ConfigLoaderInterface
     {
         if (!is_dir($path)) {
             throw new InvalidPathException(sprintf('%s does not appear to exist', $path));
@@ -72,38 +71,25 @@ class ConfigLoader implements ConfigLoaderInterface
     }
 
     /**
-     * Returns the path to where the configuration
-     * files are located
-     *
-     * @return string|null
+     * @inheritdoc
      */
-    public function getDirectory()
+    public function getDirectory() : ?string
     {
         return $this->directory;
     }
 
     /**
-     * Check if a directory was set
-     *
-     * @return bool
+     * @inheritdoc
      */
-    public function hasDirectory()
+    public function hasDirectory() : bool
     {
-        return !is_null($this->directory);
+        return isset($this->directory);
     }
 
     /**
-     * Loads and parses the configuration files found inside
-     * the specified directory
-     *
-     * @see getDirectory()
-     * @see parse()
-     * @see getConfig()
-     *
-     * @throws ParseException If unable to parse a given configuration file
-     * @throws DirectoryNotSpecifiedException If no directory was specified
+     * @inheritdoc
      */
-    public function load()
+    public function load() : void
     {
         if (!$this->hasDirectory()) {
             throw new DirectoryNotSpecifiedException('Cannot load configuration files, because no directory was specified');
@@ -112,21 +98,15 @@ class ConfigLoader implements ConfigLoaderInterface
         $files = $this->getFile()->files($this->getDirectory());
 
         foreach ($files as $filePath) {
-            $this->parse($filePath);
+            /** @var SplFileInfo $filePath */
+            $this->parse($filePath->getRealPath());
         }
     }
 
     /**
-     * Parse the given configuration file, and return instance
-     * of the repository, in which the configuration is contained
-     *
-     * @param string $filePath Path to configuration file
-     *
-     * @return \Illuminate\Contracts\Config\Repository
-     *
-     * @throws ParseException If unable to parse given configuration file
+     * @inheritdoc
      */
-    public function parse($filePath)
+    public function parse(string $filePath) : Repository
     {
         try {
             // Get the file info for the given file
@@ -154,7 +134,7 @@ class ConfigLoader implements ConfigLoaderInterface
             $config->set($section, $new);
 
             return $config;
-        } catch (Exception $e) {
+        } catch (Throwable $e) {
             throw new ParseException(sprintf('Unable to parse %s; %s', $filePath, PHP_EOL . $e), $e->getCode(), $e);
         }
     }
