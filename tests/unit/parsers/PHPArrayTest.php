@@ -6,11 +6,12 @@ use Aedart\Config\Loader\Parsers\PHPArray;
  * Class PHPArrayTest
  *
  * @group parsers
- * @coversDefaultClass Aedart\Config\Loader\Parsers\PHPArray
+ * @group php-parser
  *
  * @author Alin Eugen Deac <aedart@gmail.com>
  */
-class PHPArrayTest extends ParserTestCase{
+class PHPArrayTest extends ParserTestCase
+{
 
     /**
      * Get the class path for the configuration parser
@@ -18,7 +19,8 @@ class PHPArrayTest extends ParserTestCase{
      *
      * @return string
      */
-    public function getParserClassPath() {
+    public function getParserClassPath()
+    {
         return PHPArray::class;
     }
 
@@ -28,7 +30,8 @@ class PHPArrayTest extends ParserTestCase{
      *
      * @return string Relative path
      */
-    public function getValidConfigurationFilePath() {
+    public function getValidConfigurationFilePath()
+    {
         return 'phpArray/valid.php';
     }
 
@@ -38,7 +41,8 @@ class PHPArrayTest extends ParserTestCase{
      *
      * @return string Relative path
      */
-    public function getInvalidValidConfigurationFilePath() {
+    public function getInvalidValidConfigurationFilePath()
+    {
         return 'phpArray/invalid.php';
     }
 
@@ -48,27 +52,25 @@ class PHPArrayTest extends ParserTestCase{
 
     /**
      * @test
-     * @covers ::getFileType
      */
-    public function hasAFileType() {
+    public function hasAFileType()
+    {
         $this->assertHasFileType();
     }
 
     /**
      * @test
-     * @covers ::loadAndParse
-     * @covers ::parse
      */
-    public function failsWhenContentIsNotArray() {
+    public function failsWhenContentIsNotArray()
+    {
         $this->assertFailsWhenOnInvalidContent();
     }
 
     /**
      * @test
-     * @covers ::loadAndParse
-     * @covers ::parse
      */
-    public function canParsePHPArray() {
+    public function canParsePHPArray()
+    {
         $this->assertCanLoadAndParse();
     }
 
@@ -78,7 +80,8 @@ class PHPArrayTest extends ParserTestCase{
      *
      * @expectedException \Aedart\Config\Loader\Exceptions\ParseException
      */
-    public function failsLoadingAndParsingWhenNoFilePathGiven() {
+    public function failsLoadingAndParsingWhenNoFilePathGiven()
+    {
         $parser = $this->makeParser();
 
         $parser->loadAndParse();

@@ -6,11 +6,12 @@ use Aedart\Config\Loader\Parsers\Ini;
  * Class IniTest
  *
  * @group parsers
- * @coversDefaultClass Aedart\Config\Loader\Parsers\Ini
+ * @group ini-parser
  *
  * @author Alin Eugen Deac <aedart@gmail.com>
  */
-class IniTest extends ParserTestCase{
+class IniTest extends ParserTestCase
+{
 
     /**
      * Get the class path for the configuration parser
@@ -18,7 +19,8 @@ class IniTest extends ParserTestCase{
      *
      * @return string
      */
-    public function getParserClassPath() {
+    public function getParserClassPath()
+    {
         return Ini::class;
     }
 
@@ -28,7 +30,8 @@ class IniTest extends ParserTestCase{
      *
      * @return string Relative path
      */
-    public function getValidConfigurationFilePath() {
+    public function getValidConfigurationFilePath()
+    {
         return 'ini/valid.ini';
     }
 
@@ -38,7 +41,8 @@ class IniTest extends ParserTestCase{
      *
      * @return string Relative path
      */
-    public function getInvalidValidConfigurationFilePath() {
+    public function getInvalidValidConfigurationFilePath()
+    {
         return 'ini/invalid.ini';
     }
 
@@ -48,27 +52,25 @@ class IniTest extends ParserTestCase{
 
     /**
      * @test
-     * @covers ::getFileType
      */
-    public function hasAFileType() {
+    public function hasAFileType()
+    {
         $this->assertHasFileType();
     }
 
     /**
      * @test
-     * @covers ::loadAndParse
-     * @covers ::parse
      */
-    public function failsWhenContentCannotBeParsed() {
+    public function failsWhenContentCannotBeParsed()
+    {
         $this->assertFailsWhenOnInvalidContent();
     }
 
     /**
      * @test
-     * @covers ::loadAndParse
-     * @covers ::parse
      */
-    public function canParseIni() {
+    public function canParseIni()
+    {
         $this->assertCanLoadAndParse();
     }
 }

@@ -6,11 +6,12 @@ use Aedart\Config\Loader\Parsers\Json;
  * Class JsonTest
  *
  * @group parsers
- * @coversDefaultClass Aedart\Config\Loader\Parsers\Json
+ * @group json-parser
  *
  * @author Alin Eugen Deac <aedart@gmail.com>
  */
-class JsonTest extends ParserTestCase{
+class JsonTest extends ParserTestCase
+{
 
     /**
      * Get the class path for the configuration parser
@@ -18,7 +19,8 @@ class JsonTest extends ParserTestCase{
      *
      * @return string
      */
-    public function getParserClassPath() {
+    public function getParserClassPath()
+    {
         return Json::class;
     }
 
@@ -28,7 +30,8 @@ class JsonTest extends ParserTestCase{
      *
      * @return string Relative path
      */
-    public function getValidConfigurationFilePath() {
+    public function getValidConfigurationFilePath()
+    {
         return 'json/valid.json';
     }
 
@@ -38,7 +41,8 @@ class JsonTest extends ParserTestCase{
      *
      * @return string Relative path
      */
-    public function getInvalidValidConfigurationFilePath() {
+    public function getInvalidValidConfigurationFilePath()
+    {
         return 'json/invalid.json';
     }
 
@@ -48,27 +52,25 @@ class JsonTest extends ParserTestCase{
 
     /**
      * @test
-     * @covers ::getFileType
      */
-    public function hasAFileType() {
+    public function hasAFileType()
+    {
         $this->assertHasFileType();
     }
 
     /**
      * @test
-     * @covers ::loadAndParse
-     * @covers ::parse
      */
-    public function failsWhenContentCannotBeDecoded() {
+    public function failsWhenContentCannotBeDecoded()
+    {
         $this->assertFailsWhenOnInvalidContent();
     }
 
     /**
      * @test
-     * @covers ::loadAndParse
-     * @covers ::parse
      */
-    public function canParseJson() {
+    public function canParseJson()
+    {
         $this->assertCanLoadAndParse();
     }
 }

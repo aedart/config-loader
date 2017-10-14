@@ -6,11 +6,12 @@ use Aedart\Config\Loader\Parsers\Yaml;
  * Class YamlTest
  *
  * @group parsers
- * @coversDefaultClass Aedart\Config\Loader\Parsers\Yaml
+ * @group yaml-parser
  *
  * @author Alin Eugen Deac <aedart@gmail.com>
  */
-class YamlTest extends ParserTestCase{
+class YamlTest extends ParserTestCase
+{
 
     /**
      * Get the class path for the configuration parser
@@ -18,7 +19,8 @@ class YamlTest extends ParserTestCase{
      *
      * @return string
      */
-    public function getParserClassPath() {
+    public function getParserClassPath()
+    {
         return Yaml::class;
     }
 
@@ -28,7 +30,8 @@ class YamlTest extends ParserTestCase{
      *
      * @return string Relative path
      */
-    public function getValidConfigurationFilePath() {
+    public function getValidConfigurationFilePath()
+    {
         return 'yaml/valid.yml';
     }
 
@@ -38,7 +41,8 @@ class YamlTest extends ParserTestCase{
      *
      * @return string Relative path
      */
-    public function getInvalidValidConfigurationFilePath() {
+    public function getInvalidValidConfigurationFilePath()
+    {
         return 'yaml/invalid.yml';
     }
 
@@ -48,27 +52,25 @@ class YamlTest extends ParserTestCase{
 
     /**
      * @test
-     * @covers ::getFileType
      */
-    public function hasAFileType() {
+    public function hasAFileType()
+    {
         $this->assertHasFileType();
     }
 
     /**
      * @test
-     * @covers ::loadAndParse
-     * @covers ::parse
      */
-    public function failsWhenContentCannotBeParsed() {
+    public function failsWhenContentCannotBeParsed()
+    {
         $this->assertFailsWhenOnInvalidContent();
     }
 
     /**
      * @test
-     * @covers ::loadAndParse
-     * @covers ::parse
      */
-    public function canParseYaml() {
+    public function canParseYaml()
+    {
         $this->assertCanLoadAndParse();
     }
 }
