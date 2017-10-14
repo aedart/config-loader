@@ -47,9 +47,9 @@ class ConfigLoader implements ConfigLoaderInterface
      *
      * @see getParsers()
      *
-     * @param string $directoryPath [optional]
+     * @param string|null $directoryPath [optional]
      */
-    public function __construct(?string $directoryPath)
+    public function __construct(?string $directoryPath = null)
     {
         if(isset($directoryPath)){
             $this->setDirectory($directoryPath);

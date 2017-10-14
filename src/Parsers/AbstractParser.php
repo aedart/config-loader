@@ -32,7 +32,7 @@ abstract class AbstractParser implements Parser
      *
      * @param string|null $filePath [optional]
      */
-    public function __construct(?string $filePath)
+    public function __construct(?string $filePath = null)
     {
         if (isset($filePath)) {
             $this->setFilePath($filePath);
