@@ -1,4 +1,6 @@
-<?php namespace Aedart\Config\Loader\Facades;
+<?php
+
+namespace Aedart\Config\Loader\Facades;
 
 use Illuminate\Support\Facades\Facade;
 use Aedart\Config\Loader\Contracts\Loaders\ConfigLoader as ConfigLoaderInterface;
@@ -13,7 +15,6 @@ use Aedart\Config\Loader\Contracts\Loaders\ConfigLoader as ConfigLoaderInterface
  */
 class ConfigLoader extends Facade
 {
-
     /**
      * Get the registered name of the component.
      *
@@ -25,5 +26,4 @@ class ConfigLoader extends Facade
     {
         return ConfigLoaderInterface::class;
     }
-
 }

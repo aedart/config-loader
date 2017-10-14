@@ -1,4 +1,6 @@
-<?php namespace Aedart\Config\Loader\Facades;
+<?php
+
+namespace Aedart\Config\Loader\Facades;
 
 use Illuminate\Support\Facades\Facade;
 use Aedart\Config\Loader\Contracts\Factories\ParserFactory as ParserFactoryInterface;
@@ -13,7 +15,6 @@ use Aedart\Config\Loader\Contracts\Factories\ParserFactory as ParserFactoryInter
  */
 class ParserFactory extends Facade
 {
-
     /**
      * Get the registered name of the component.
      *
