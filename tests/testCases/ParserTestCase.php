@@ -12,7 +12,8 @@ use Illuminate\Filesystem\Filesystem;
  *
  * @author Alin Eugen Deac <aedart@gmail.com>
  */
-abstract class ParserTestCase extends UnitTestCase{
+abstract class ParserTestCase extends UnitTestCase
+{
 
     /****************************************************
      * Helpers
@@ -26,7 +27,8 @@ abstract class ParserTestCase extends UnitTestCase{
      *
      * @return \Aedart\Config\Loader\Contracts\Parsers\Parser
      */
-    public function makeParser($filePath = null) {
+    public function makeParser($filePath = null)
+    {
         $parser = $this->getParserClassPath();
 
         $resolvedParser = new $parser($filePath);
@@ -41,7 +43,8 @@ abstract class ParserTestCase extends UnitTestCase{
      *
      * @return string
      */
-    public function getDirectory() {
+    public function getDirectory()
+    {
         return Configuration::dataDir() . 'parsers/';
     }
 
@@ -50,7 +53,8 @@ abstract class ParserTestCase extends UnitTestCase{
      *
      * @return string
      */
-    public function getPathToValidFile() {
+    public function getPathToValidFile()
+    {
         return $this->getDirectory() . $this->getValidConfigurationFilePath();
     }
 
@@ -59,7 +63,8 @@ abstract class ParserTestCase extends UnitTestCase{
      *
      * @return string
      */
-    public function getPathToInvalidFile() {
+    public function getPathToInvalidFile()
+    {
         return $this->getDirectory() . $this->getInvalidValidConfigurationFilePath();
     }
 
@@ -70,7 +75,8 @@ abstract class ParserTestCase extends UnitTestCase{
     /**
      * Assert that the parser in question has a file type
      */
-    public function assertHasFileType() {
+    public function assertHasFileType()
+    {
         $parser = $this->makeParser();
 
         $type = $parser->getFileType();
@@ -83,16 +89,17 @@ abstract class ParserTestCase extends UnitTestCase{
      * Assert that the parser in question fails, when invalid
      * content is attempted to be parsed
      */
-    public function assertFailsWhenOnInvalidContent() {
+    public function assertFailsWhenOnInvalidContent()
+    {
         $parser = $this->makeParser($this->getPathToInvalidFile());
 
         try {
             $parser->loadAndParse();
 
             $this->fail('Expected a Parser Exception to be thrown!');
-        } catch (ParseException $e){
+        } catch (ParseException $e) {
             $this->assertTrue(true);
-        } catch (Exception $e){
+        } catch (Exception $e) {
             $this->fail($e);
         }
     }
@@ -100,7 +107,8 @@ abstract class ParserTestCase extends UnitTestCase{
     /**
      * Assert that the parser in question is able to parse content
      */
-    public function assertCanLoadAndParse() {
+    public function assertCanLoadAndParse()
+    {
         $parser = $this->makeParser($this->getPathToValidFile());
 
         $output = $parser->loadAndParse();
