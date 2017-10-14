@@ -8,11 +8,12 @@ use \Mockery as m;
  * Class AbstractParserTest
  *
  * @group parsers
- * @coversDefaultClass Aedart\Config\Loader\Parsers\AbstractParser
+ * @group abstract-parser
  *
  * @author Alin Eugen Deac <aedart@gmail.com>
  */
-class AbstractParserTest extends ParserTestCase{
+class AbstractParserTest extends ParserTestCase
+{
 
     /**
      * <b>Override</b>
@@ -23,7 +24,8 @@ class AbstractParserTest extends ParserTestCase{
      *
      * @return m\MockInterface|AbstractParser
      */
-    public function makeParser($filePath = null) {
+    public function makeParser($filePath = null)
+    {
         $parser = m::mock($this->getParserClassPath(), [$filePath])->makePartial();
         $parser->setFile(new Filesystem());
 
@@ -36,7 +38,8 @@ class AbstractParserTest extends ParserTestCase{
      *
      * @return string
      */
-    public function getParserClassPath() {
+    public function getParserClassPath()
+    {
         return AbstractParser::class;
     }
 
@@ -46,7 +49,8 @@ class AbstractParserTest extends ParserTestCase{
      *
      * @return string Relative path
      */
-    public function getValidConfigurationFilePath() {
+    public function getValidConfigurationFilePath()
+    {
         return 'abstractParser/valid.php';
     }
 
@@ -56,7 +60,8 @@ class AbstractParserTest extends ParserTestCase{
      *
      * @return string Relative path
      */
-    public function getInvalidValidConfigurationFilePath() {
+    public function getInvalidValidConfigurationFilePath()
+    {
         return 'abstractParser/invalid.php';
     }
 
@@ -70,12 +75,9 @@ class AbstractParserTest extends ParserTestCase{
 
     /**
      * @test
-     * @covers ::__construct
-     * @covers ::setFilePath
-     * @covers ::getFilePath
-     * @covers ::hasFilePath
      */
-    public function canSetFilePathViaConstructor() {
+    public function canSetFilePathViaConstructor()
+    {
         $parser = new DummyParser($this->getPathToValidFile());
 
         $this->assertSame($this->getPathToValidFile(), $parser->getFilePath());
@@ -83,11 +85,9 @@ class AbstractParserTest extends ParserTestCase{
 
     /**
      * @test
-     * @covers ::setFilePath
-     * @covers ::getFilePath
-     * @covers ::hasFilePath
      */
-    public function canSetAndObtainFilePath() {
+    public function canSetAndObtainFilePath()
+    {
         $filePath = $this->getPathToValidFile();
 
         //$parser = $this->makeParser($filePath); // fails when mocked!?
@@ -101,11 +101,11 @@ class AbstractParserTest extends ParserTestCase{
 
     /**
      * @test
-     * @covers ::setFilePath
      *
      * @expectedException \Aedart\Config\Loader\Exceptions\FileDoesNotExistException
      */
-    public function failsWhenInvalidFilePathSpecified() {
+    public function failsWhenInvalidFilePathSpecified()
+    {
         //$parser = $this->makeParser($this->faker->uuid); // fails when mocked!?
         $parser = $this->makeParser();
         $parser->setFilePath($this->faker->uuid);
@@ -113,21 +113,20 @@ class AbstractParserTest extends ParserTestCase{
 
     /**
      * @test
-     * @covers ::loadAndParse
-     * @covers ::hasFilePath
      *
      * @expectedException \Aedart\Config\Loader\Exceptions\ParseException
      */
-    public function failsToLoadAndInvokeParseWhenNoFilePathSpecified() {
+    public function failsToLoadAndInvokeParseWhenNoFilePathSpecified()
+    {
         $parser = $this->makeParser();
         $parser->loadAndParse();
     }
 
     /**
      * @test
-     * @covers ::loadAndParse
      */
-    public function invokesParseWithFileContent() {
+    public function invokesParseWithFileContent()
+    {
         $fs = new Filesystem();
         $filePath = $this->getPathToValidFile();
         $content = $fs->get($filePath);
@@ -146,13 +145,16 @@ class AbstractParserTest extends ParserTestCase{
     }
 }
 
-class DummyParser extends AbstractParser{
+class DummyParser extends AbstractParser
+{
 
-    public static function getFileType() {
+    public static function getFileType() : string
+    {
         return 'n/a';
     }
 
-    public function parse($content) {
+    public function parse(string $content) : array
+    {
         return [];
     }
 }
