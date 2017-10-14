@@ -20,18 +20,10 @@ use Aedart\Config\Loader\Parsers\Yaml;
  */
 class DefaultParserFactory implements ParserFactory
 {
-
     /**
-     * Creates and returns a configuration parser, for the
-     * given file extension
-     *
-     * @param string $fileExtension
-     *
-     * @return Parser
-     *
-     * @throws NoParserFoundException If no parser could be created for the given file extension
+     * @inheritdoc
      */
-    public function make($fileExtension)
+    public function make(string $fileExtension) : Parser
     {
 
         $ext = strtolower($fileExtension);
@@ -56,8 +48,10 @@ class DefaultParserFactory implements ParserFactory
                 break;
 
             default:
-                throw new NoParserFoundException(sprintf('No parser is available for the "%s" file extension',
-                    $fileExtension));
+                throw new NoParserFoundException(
+                    sprintf('No parser is available for the "%s" file extension',
+                    $fileExtension)
+                );
                 break;
         }
     }

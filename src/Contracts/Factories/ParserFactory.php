@@ -1,4 +1,6 @@
-<?php namespace Aedart\Config\Loader\Contracts\Factories;
+<?php
+
+namespace Aedart\Config\Loader\Contracts\Factories;
 
 use Aedart\Config\Loader\Contracts\Parsers\Parser;
 use Aedart\Config\Loader\Exceptions\NoParserFoundException;
@@ -27,5 +29,5 @@ interface ParserFactory
      *
      * @throws NoParserFoundException If no parser could be created for the given file extension
      */
-    public function make($fileExtension);
+    public function make(string $fileExtension) : Parser;
 }
