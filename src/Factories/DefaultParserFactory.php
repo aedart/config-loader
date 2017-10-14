@@ -1,4 +1,7 @@
-<?php namespace Aedart\Config\Loader\Factories;
+<?php
+declare(strict_types=1);
+
+namespace Aedart\Config\Loader\Factories;
 
 use Aedart\Config\Loader\Contracts\Factories\ParserFactory;
 use Aedart\Config\Loader\Contracts\Parsers\Parser;
