@@ -1,10 +1,13 @@
-<?php namespace Aedart\Config\Loader\Traits;
+<?php
+declare(strict_types=1);
+
+namespace Aedart\Config\Loader\Traits;
 
 use Aedart\Config\Loader\Contracts\Loaders\ConfigLoader;
 use Aedart\Config\Loader\Facades\ConfigLoader as ConfigLoaderFacade;
 
 /**
- * <h1>Config Loader Trait</h1>
+ * Config Loader Trait
  *
  * @see \Aedart\Config\Loader\Contracts\ConfigLoaderAware
  *
@@ -13,28 +16,29 @@ use Aedart\Config\Loader\Facades\ConfigLoader as ConfigLoaderFacade;
  */
 trait ConfigLoaderTrait
 {
-
     /**
-     * Configuration Loader
+     * Configuration Loader Instance
      *
      * @var ConfigLoader|null
      */
     protected $configLoader = null;
 
     /**
-     * Set the given config loader
+     * Set config loader
      *
-     * @param ConfigLoader $loader Configuration Loader
+     * @param ConfigLoader|null $loader Configuration Loader Instance
      *
-     * @return void
+     * @return self
      */
-    public function setConfigLoader(ConfigLoader $loader)
+    public function setConfigLoader(?ConfigLoader $loader)
     {
         $this->configLoader = $loader;
+
+        return $this;
     }
 
     /**
-     * Get the given config loader
+     * Get config loader
      *
      * If no config loader has been set, this method will
      * set and return a default config loader, if any such
@@ -44,23 +48,12 @@ trait ConfigLoaderTrait
      *
      * @return ConfigLoader|null config loader or null if none config loader has been set
      */
-    public function getConfigLoader()
+    public function getConfigLoader(): ?ConfigLoader
     {
-        if (!$this->hasConfigLoader() && $this->hasDefaultConfigLoader()) {
+        if (!$this->hasConfigLoader()) {
             $this->setConfigLoader($this->getDefaultConfigLoader());
         }
         return $this->configLoader;
-    }
-
-    /**
-     * Get a default config loader value, if any is available
-     *
-     * @return ConfigLoader|null A default config loader value or Null if no default value is available
-     */
-    public function getDefaultConfigLoader()
-    {
-        static $loader;
-        return isset($loader) ? $loader : $loader = ConfigLoaderFacade::getFacadeRoot();
     }
 
     /**
@@ -68,19 +61,18 @@ trait ConfigLoaderTrait
      *
      * @return bool True if config loader has been set, false if not
      */
-    public function hasConfigLoader()
+    public function hasConfigLoader(): bool
     {
         return isset($this->configLoader);
     }
 
     /**
-     * Check if a default config loader is available or not
+     * Get a default config loader value, if any is available
      *
-     * @return bool True of a default config loader is available, false if not
+     * @return ConfigLoader|null A default config loader value or Null if no default value is available
      */
-    public function hasDefaultConfigLoader()
+    public function getDefaultConfigLoader(): ?ConfigLoader
     {
-        $default = $this->getDefaultConfigLoader();
-        return isset($default);
+        return ConfigLoaderFacade::getFacadeRoot();
     }
 }

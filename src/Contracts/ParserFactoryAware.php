@@ -1,32 +1,30 @@
-<?php namespace Aedart\Config\Loader\Contracts;
+<?php
+
+namespace Aedart\Config\Loader\Contracts;
 
 use Aedart\Config\Loader\Contracts\Factories\ParserFactory;
 
 /**
- * <h1>Parser Factory Aware</h1>
+ * Parser Factory Aware
  *
- * Component is aware of a Parser Factory, which is able to
- * make parsers, based on a given file extension.
- *
- * @see ParserFactory
+ * @see \Aedart\Config\Loader\Contracts\Factories\ParserFactory
  *
  * @author Alin Eugen Deac <aedart@gmail.com>
- * @package Aedart\Config\Loader\Traits
+ * @package Aedart\Config\Loader\Contracts
  */
 interface ParserFactoryAware
 {
-
     /**
-     * Set the given parser factory
+     * Set parser factory
      *
-     * @param ParserFactory $factory Instance of a Parser Factory
+     * @param ParserFactory|null $factory Parser Factory Instance
      *
-     * @return void
+     * @return self
      */
-    public function setParserFactory(ParserFactory $factory);
+    public function setParserFactory(?ParserFactory $factory);
 
     /**
-     * Get the given parser factory
+     * Get parser factory
      *
      * If no parser factory has been set, this method will
      * set and return a default parser factory, if any such
@@ -36,26 +34,19 @@ interface ParserFactoryAware
      *
      * @return ParserFactory|null parser factory or null if none parser factory has been set
      */
-    public function getParserFactory();
-
-    /**
-     * Get a default parser factory value, if any is available
-     *
-     * @return ParserFactory|null A default parser factory value or Null if no default value is available
-     */
-    public function getDefaultParserFactory();
+    public function getParserFactory(): ?ParserFactory;
 
     /**
      * Check if parser factory has been set
      *
      * @return bool True if parser factory has been set, false if not
      */
-    public function hasParserFactory();
+    public function hasParserFactory(): bool;
 
     /**
-     * Check if a default parser factory is available or not
+     * Get a default parser factory value, if any is available
      *
-     * @return bool True of a default parser factory is available, false if not
+     * @return ParserFactory|null A default parser factory value or Null if no default value is available
      */
-    public function hasDefaultParserFactory();
+    public function getDefaultParserFactory(): ?ParserFactory;
 }
