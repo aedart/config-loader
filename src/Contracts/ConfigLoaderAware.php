@@ -5,6 +5,8 @@ namespace Aedart\Config\Loader\Contracts;
 use Aedart\Config\Loader\Contracts\Loaders\ConfigLoader;
 
 /**
+ * @deprecated Use \Aedart\Contracts\Config\Loaders\ConfigLoaderAware, in aedart/athenaeum package
+ *
  * Config Loader Aware
  *
  * @see \Aedart\Config\Loader\Contracts\Loaders\ConfigLoader

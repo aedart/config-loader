@@ -7,6 +7,8 @@ use Aedart\Config\Loader\Contracts\Factories\ParserFactory;
 use Aedart\Config\Loader\Facades\ParserFactory as ParserFactoryFacade;
 
 /**
+ * @deprecated Use \Aedart\Config\Traits\FileParserFactoryTrait, in aedart/athenaeum package
+ *
  * Parser Factory Trait
  *
  * @see \Aedart\Config\Loader\Contracts\ParserFactoryAware

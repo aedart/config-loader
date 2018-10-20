@@ -8,6 +8,8 @@ use Symfony\Component\Yaml\Yaml as SymfonyYamlParser;
 use Throwable;
 
 /**
+ * @deprecated Use \Aedart\Config\Parsers\Files\Yaml, in aedart/athenaeum package
+ *
  * <h1>YAML</h1>
  *
  * Parses YAML-configuration files, that consists of an array.

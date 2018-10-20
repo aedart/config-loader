@@ -15,6 +15,8 @@ use Symfony\Component\Finder\SplFileInfo;
 use Throwable;
 
 /**
+ * @deprecated Use \Aedart\Config\Loader, in aedart/athenaeum package
+ *
  * <h1>Config Loader</h1>
  *
  * @see \Aedart\Config\Loader\Contracts\Loaders\ConfigLoader

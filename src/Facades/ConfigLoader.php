@@ -6,6 +6,8 @@ use Illuminate\Support\Facades\Facade;
 use Aedart\Config\Loader\Contracts\Loaders\ConfigLoader as ConfigLoaderInterface;
 
 /**
+ * @deprecated Use \Aedart\Config\Facades\ConfigLoader, in aedart/athenaeum package
+ *
  * <h1>Config Loader Facade</h1>
  *
  * @see \Aedart\Config\Loader\Loaders\ConfigLoader

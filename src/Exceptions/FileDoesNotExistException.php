@@ -3,6 +3,8 @@
 use InvalidArgumentException;
 
 /**
+ * @deprecated Use \Aedart\Contracts\Config\Parsers\Exceptions\FileDoesNotExistException, in aedart/athenaeum package
+ *
  * File Does Not Exist Exception
  *
  * Throw this exception whenever a given file does not exist

@@ -12,6 +12,8 @@ use Aedart\Laravel\Helpers\Contracts\Filesystem\FileAware;
 use Illuminate\Contracts\Config\Repository;
 
 /**
+ * @deprecated Use \Aedart\Contracts\Config\Loader, in aedart/athenaeum package
+ *
  * <h1>Config Loader</h1>
  *
  * Responsible for loading and parsing various types of configuration files,

@@ -9,6 +9,8 @@ use Aedart\Config\Loader\Contracts\Loaders\ConfigLoader as ConfigLoaderInterface
 use Aedart\Config\Loader\Contracts\Factories\ParserFactory as ParserFactoryInterface;
 
 /**
+ * @deprecated Use \Aedart\Config\Providers\ConfigLoaderServiceProvider, in aedart/athenaeum package
+ *
  * <h1>Configuration Loader Service Provider</h1>
  *
  * Registers a default configuration loader

@@ -7,6 +7,8 @@ use Aedart\Config\Loader\Exceptions\ParseException;
 use Throwable;
 
 /**
+ * @deprecated Use \Aedart\Config\Parsers\Files\Ini, in aedart/athenaeum package
+ *
  * <h1>Ini</h1>
  *
  * Parses ini-files

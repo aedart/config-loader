@@ -7,6 +7,8 @@ use Aedart\Config\Loader\Contracts\Loaders\ConfigLoader;
 use Aedart\Config\Loader\Facades\ConfigLoader as ConfigLoaderFacade;
 
 /**
+ * @deprecated Use \Aedart\Config\Traits\ConfigLoaderTrait, in aedart/athenaeum package
+ *
  * Config Loader Trait
  *
  * @see \Aedart\Config\Loader\Contracts\ConfigLoaderAware

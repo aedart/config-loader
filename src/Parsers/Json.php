@@ -6,6 +6,8 @@ namespace Aedart\Config\Loader\Parsers;
 use Aedart\Config\Loader\Exceptions\ParseException;
 
 /**
+ * @deprecated Use \Aedart\Config\Parsers\Files\Json, in aedart/athenaeum package
+ *
  * <h1>Json</h1>
  *
  * Parses json files

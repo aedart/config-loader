@@ -7,6 +7,8 @@ use Aedart\Config\Loader\Exceptions\ParseException;
 use Throwable;
 
 /**
+ * @deprecated Use \Aedart\Config\Parsers\Files\PhpArray, in aedart/athenaeum package
+ *
  * <h1>PHP Array</h1>
  *
  * Parses php-configuration files, that consists of an array.

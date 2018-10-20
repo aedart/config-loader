@@ -5,6 +5,8 @@ namespace Aedart\Config\Loader\Contracts;
 use Aedart\Config\Loader\Contracts\Factories\ParserFactory;
 
 /**
+ * @deprecated Use \Aedart\Contracts\Config\Parsers\Factories\FileParserFactoryAware, in aedart/athenaeum package
+ *
  * Parser Factory Aware
  *
  * @see \Aedart\Config\Loader\Contracts\Factories\ParserFactory

@@ -3,6 +3,8 @@
 use RuntimeException;
 
 /**
+ * @deprecated Use \Aedart\Contracts\Config\Parsers\Exceptions\FileParserException, in aedart/athenaeum package
+ *
  * Parse Exception
  *
  * Throw this exception whenever a given configuration file's content

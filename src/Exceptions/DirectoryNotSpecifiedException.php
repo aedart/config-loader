@@ -3,6 +3,8 @@
 use RuntimeException;
 
 /**
+ * @deprecated
+ *
  * Directory Not Specified Exception
  *
  * Throw this exception whenever a directory (path) was expected,

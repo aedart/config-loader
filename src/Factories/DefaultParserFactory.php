@@ -12,6 +12,8 @@ use Aedart\Config\Loader\Parsers\PHPArray;
 use Aedart\Config\Loader\Parsers\Yaml;
 
 /**
+ * @deprecated Use \Aedart\Config\Parsers\Factories\FileParserFactory, in aedart/athenaeum package
+ *
  * <h1>Default Parser Factory</h1>
  *
  * Provides a default set of parsers

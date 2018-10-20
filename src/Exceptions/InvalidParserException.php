@@ -3,6 +3,8 @@
 use InvalidArgumentException;
 
 /**
+ * @deprecated
+ *
  * Invalid Parser Exception
  *
  * Throw this exception whenever an invalid configuration parser has been

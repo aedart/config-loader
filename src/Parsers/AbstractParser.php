@@ -9,6 +9,8 @@ use Aedart\Config\Loader\Exceptions\ParseException;
 use Aedart\Laravel\Helpers\Traits\Filesystem\FileTrait;
 
 /**
+ * @deprecated Use \Aedart\Config\Parsers\Files\ParserBase, in aedart/athenaeum package
+ *
  * <h1>Abstract Parser</h1>
  *
  * Abstraction for configuration parsers

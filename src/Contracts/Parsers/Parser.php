@@ -7,6 +7,8 @@ use Aedart\Config\Loader\Exceptions\ParseException;
 use Aedart\Laravel\Helpers\Contracts\Filesystem\FileAware;
 
 /**
+ * @deprecated Use \Aedart\Contracts\Config\Parsers\File, in aedart/athenaeum package
+ *
  * <h1>Configuration Parser</h1>
  *
  * Responsible for parsing a given configuration file type into

@@ -6,6 +6,8 @@ use Illuminate\Support\Facades\Facade;
 use Aedart\Config\Loader\Contracts\Factories\ParserFactory as ParserFactoryInterface;
 
 /**
+ * @deprecated Use \Aedart\Config\Facades\FileParserFactory, in aedart/athenaeum package
+ *
  * <h1>Parser Factory Facade</h1>
  *
  * @see \Aedart\Config\Loader\Factories\DefaultParserFactory

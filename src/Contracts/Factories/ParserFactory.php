@@ -6,6 +6,8 @@ use Aedart\Config\Loader\Contracts\Parsers\Parser;
 use Aedart\Config\Loader\Exceptions\NoParserFoundException;
 
 /**
+ * @deprecated Use \Aedart\Contracts\Config\Parsers\Factories\FileParserFactory, in aedart/athenaeum package
+ *
  * <h1>Parser Factory</h1>
  *
  * Responsible for creating parsers that match the given
