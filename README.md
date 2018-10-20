@@ -4,7 +4,9 @@
 [![Latest Unstable Version](https://poser.pugx.org/aedart/config-loader/v/unstable)](https://packagist.org/packages/aedart/config-loader)
 [![License](https://poser.pugx.org/aedart/config-loader/license)](https://packagist.org/packages/aedart/config-loader)
 
-# Config Loader
+# Deprecated- Config Loader
+
+Package has been replaced by [aedart/athenaeum](https://github.com/aedart/athenaeum)
 
 A utility for loading various types of configuration files and parse them to a Laravel Configuration Repository. This package contains a set of default
 file-parsers, which can be applied. However, if you have a need for a different kind of parser, then you can "simply" create one, add it to the loader.
